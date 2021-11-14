@@ -4,7 +4,7 @@ def split_list(list, parts=1):
     return [list[i * length // parts: (i + 1) * length // parts]
             for i in range(parts)]
 
-
+print(split_list([1,2,3,4,5,6,7,8,9,0]))
 # Split list into smaller lists by specifying the number of size
 def split(arr, size):
     arrs = []
