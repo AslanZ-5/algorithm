@@ -44,7 +44,7 @@ def recursive_str_len(input_str):
     return recursive_str_len(input_str[1:]) + 1
 
 
-print(recursive_str_len(input_str))
+# print(recursive_str_len(input_str))
 
 
 # FACTORIAL
@@ -77,4 +77,34 @@ def palindrom(st):
         return False
     return palindrom(st[1:-1])
 
+
 # print(palindrom('nallan'))
+
+# Given a string, count the number of consonats.
+# Note a consonant is a letter that is not a vowel,
+# i.e. a letter that is not a,e,o,i or u
+
+input_str4 = 'abc de'
+input_str5 = 'LuCiDProGrAmMiNG'
+vowel = 'aeiuo'
+
+
+def iterative_count_consonants(s):
+    c = 0
+    for i in s.lower():
+        if i not in vowel and i.isalpha():
+            c += 1
+    return c
+
+
+def recursive_count_consonants(s):
+    if s == '':
+        return 0
+    if s[0].lower() not in vowel and s[0].isalpha():
+        return 1 + recursive_count_consonants(s[1:])
+    else:
+        return recursive_count_consonants(s[1:])
+
+
+print(iterative_count_consonants(input_str5))
+print(recursive_count_consonants(input_str5))
