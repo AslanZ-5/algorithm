@@ -106,5 +106,19 @@ def recursive_count_consonants(s):
         return recursive_count_consonants(s[1:])
 
 
-print(iterative_count_consonants(input_str5))
-print(recursive_count_consonants(input_str5))
+# print(iterative_count_consonants(input_str5))
+# print(recursive_count_consonants(input_str5))
+
+
+# Given two numbers, find their product using recursion.
+x = 5
+y = 3
+
+
+def recursive_product(x, y):
+    if y == 0:
+        return 0
+    return recursive_product(x, y - 1) + x
+
+
+print(recursive_product(x, y))
