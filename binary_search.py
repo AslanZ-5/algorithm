@@ -2,8 +2,7 @@ data = [2, 3, 4, 5, 67, 12, 13, 41, 54, 76, 5, 59, 765, 34, 54]
 data.sort()
 print(data)
 target = 6
-# print(len(data))
-# print(12//2)
+
 
 
 
