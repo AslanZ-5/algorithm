@@ -14,7 +14,7 @@ def remover(ls):
     return a
 
 
-from itertools import product, permutations, combinations
+from itertools import product, permutations, combinations,groupby
 
 a = [12, 9, 3, 4, 7, 6]
 target = 13
@@ -31,3 +31,4 @@ t = 1
 for i in rt:
     t = t* i
 print(t)
+
