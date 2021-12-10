@@ -25,4 +25,4 @@ def find_fixed_point_binary_search(A):
             return A[mid]
     return None
 A = [-10, -5, 0, 6, 7]
-print(find_fixed_point_binary_search(A))
+
