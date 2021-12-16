@@ -10,13 +10,32 @@ Example:
 
 """
 
+
 def integer_square_root(k):
     a = 1
     b = 0
-    while b <= k:
+    while b < k:
+        if (a + 1) ** 2 > k:
+            return a
+        b = a ** 2
+        a += 1
+    return 0
 
-        b = a**2
-        a +=1
-    return b
 
-print(integer_square_root(300))
+def integer_square_root_binary(k):
+    low = 0
+    high = k
+
+    while low <= high:
+        mid = (low + high) // 2
+        print(mid)
+        if mid ** 2 <= k:
+            low = mid + 1
+        else:
+            high = mid - 1
+    return low - 1
+
+
+# print(integer_square_root(300))
+print(integer_square_root_binary(300))
+print((17+20)//2)
