@@ -57,5 +57,5 @@ def find_closest_num(a, target):
     return closest_num
 
 
-a = [2,  7, 8, 8, 9]
+a = [2, 6, 7, 8, 8, 9]
 print(find_closest_num(a,4))
