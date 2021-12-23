@@ -1,5 +1,7 @@
 """
-
+O(n2) - The runtime is a quadratic function of the size of the input.
+A naive implementation of finding duplicate values in a list, in which
+each item has to be checked twice, is an example of a quadratic algorithm.
 """
 
 def insertion_sorting(arr):
