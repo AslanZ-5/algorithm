@@ -128,3 +128,5 @@ def memory(n):
         print('hello world!')
     '''O(n) for time complexity but what about space complexity.
     In memory it does not need to store 10 versions of "hello world!" it only needs store one string. O(1)'''
+
+
