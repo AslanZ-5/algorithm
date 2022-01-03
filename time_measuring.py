@@ -83,9 +83,9 @@ def comp(lst):
     Then is prints the first 1/2 of the list o(n/2)
     Then prints a string 10 times O(n) it is a constant
     """
-    print (lst[0])
+    print(lst[0])
 
-    midpoint = len(lst)//2
+    midpoint = len(lst) // 2
 
     for val in lst[:midpoint]:
         print(val)
@@ -100,3 +100,31 @@ def comp(lst):
     """
 
 
+# Worst Case vs Best Case
+""" Many times we are only concerned with the worst possible cose of an algorithm, but in an interview
+setting its important to keep in mind that worst case and best case scenarios may be completely different Big-O times."""
+
+
+def matcher(lst, match):
+    """ Given a list lst, return a boolean indicating if match item is in the list"""
+    for item in lst:
+        if item == match:
+            return True
+        return False
+
+
+lst = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+matcher(lst, 1)  # this is best case because item seeked is index 0. O(1) Best case becomes a constant
+matcher(lst, 20)  # worst case, entire list must be searched, n elements. O(n) Worst becomes linear
+
+# Space Complexity
+"""Also concerned with how much memory/space an algorithm uses. The notation of space 
+complexity is the same, but instead of checking the time of operations, we check the size of the allocation of memory"""
+
+
+def memory(n):
+    """Prints 'hello world!' n times"""
+    for x in range(n):
+        print('hello world!')
+    '''O(n) for time complexity but what about space complexity.
+    In memory it does not need to store 10 versions of "hello world!" it only needs store one string. O(1)'''
