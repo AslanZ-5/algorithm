@@ -76,6 +76,7 @@ def pair_sum_2(arr, k):
 """Take an array with positive and negative integers and
 find the maximum sum of that array"""
 
+
 def largest(arr):
     if len(arr) == 0:
         return print('too small')
@@ -87,4 +88,54 @@ def largest(arr):
     return max_sum
 
 
-print(largest([-2,-3,4,-1,-2,1,5,-3]))
+print(largest([-2, -3, 4, -1, -2, 1, 5, -3]))
+
+# How to reverse a String
+
+"""
+Given a string of words, reverse all the words
+start = 'This is the best'
+end = 'best the is This'
+
+"""
+
+
+def reverse_str1(st):
+    return " ".join(reversed(st.split()))
+
+def split_str(st):
+    length = len(st)
+    spaces = [' ']
+    words = []
+    i = 0
+    while i < length:
+        if st[i] not in spaces:
+            start = i
+            while i < length and st[i] not in spaces:
+                i += 1
+            words.append(st[start:i])
+        i += 1
+    return words
+def reverse_str(st):
+    length = len(st)
+    spaces = [' ']
+    words = []
+    i = 0
+    while i < length:
+        if st[i] not in spaces:
+            start = i
+            while i < length and st[i] not in spaces:
+                i += 1
+            words.append(st[start:i])
+        i += 1
+    stt = ''
+    for i in words[::-1]:
+        stt += ' ' + i
+    return stt.strip()
+
+
+st = 'This is the best'
+print(split_str(st))
+print(reverse_str(st))
+
+print(len(st))
