@@ -88,7 +88,7 @@ def largest(arr):
     return max_sum
 
 
-print(largest([-2, -3, 4, -1, -2, 1, 5, -3]))
+# print(largest([-2, -3, 4, -1, -2, 1, 5, -3]))
 
 # How to reverse a String
 
@@ -103,9 +103,10 @@ end = 'best the is This'
 def reverse_str1(st):
     return " ".join(reversed(st.split()))
 
-def split_str(st):
+
+def split_str(st, t=' '):
     length = len(st)
-    spaces = [' ']
+    spaces = [t]
     words = []
     i = 0
     while i < length:
@@ -116,6 +117,8 @@ def split_str(st):
             words.append(st[start:i])
         i += 1
     return words
+
+
 def reverse_str(st):
     length = len(st)
     spaces = [' ']
@@ -134,8 +137,40 @@ def reverse_str(st):
     return stt.strip()
 
 
-st = 'This is the best'
-print(split_str(st))
-print(reverse_str(st))
+"""
+    Given 2 arrays (assume no duplicates)
+    is 1 array a rotation of another - return True/False
+    same size and elements but start index is different 
+    
+    Big O(n) we are going through each array 2x but O(2n) = O(n) since infinite sized lists,
+    constants means nada
+    
+    select an indexed position in list1 and gets its value. Find same element in list2 and check index for index from there 
+    if any variation then we know its false.
+    Getting to last item without a false means true.
+"""
 
-print(len(st))
+
+def rotation_arr(list1, list2):
+    if len(list1) != len(list2):
+        return False
+    key = list1[0]
+    key_index = 0
+    for i in range(len(list2)):
+        if list2[i] == key:
+            key_index = i
+            break
+    if key_index == 0:
+        return False
+
+    for i in range(len(list1)):
+        list2inx = (key_index + i) % len(list1)
+
+        if list1[i] != list2[list2inx]:
+            return False
+    return True
+
+a = [0,0,0,4,5,6,7]
+b = [4,5,6,7,0,0,0]
+
+print(rotation_arr(a,b))
