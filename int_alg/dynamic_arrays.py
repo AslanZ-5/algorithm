@@ -171,10 +171,10 @@ def rotation_arr(list1, list2):
     return True
 
 
-a = [0, 0, 0, 4, 5, 6, 7]
-b = [4, 5, 6, 7, 0, 0, 0]
-
-print(rotation_arr(a, b))
+# a = [0, 0, 0, 4, 5, 6, 7]
+# b = [4, 5, 6, 7, 0, 0, 0]
+#
+# print(rotation_arr(a, b))
 
 # Array Common Elements
 """
@@ -185,7 +185,8 @@ are [1,4,9]
 
 """
 
-def common_element(ls1,ls2):
+
+def common_element(ls1, ls2):
     p1 = 0
     p2 = 0
     result = []
@@ -201,4 +202,37 @@ def common_element(ls1,ls2):
             p1 += 1
     return result
 
-print(common_element([1,3,4,6,7,9] , [1,2,4,5,9,10]))
+
+# print(common_element([1,3,4,6,7,9] , [1,2,4,5,9,10]))
+
+
+# Mine Sweeper
+"""
+    Write a function that will take 3 arguments:
+    bombs = list of bomb locations
+    rows, columns
+    mine_sweeper([[0,0],[1,2]],3,4)
+    bomb at row index 0 column index 0
+    bomb at row index 0 column index 1
+    3 rows 
+    4 columns
+"""
+
+
+def mine_sweeper(bombs, num_rows, num_columns):
+    field = [[0]*num_columns for i in range(num_rows)]
+    for i in bombs:
+        row_loc,colm_loc = i
+        field[row_loc][colm_loc] = -1
+
+        row_range = range(row_loc-1,row_loc+2)
+        colm_range = range(colm_loc-1,colm_loc+2)
+        for i in row_range:
+            c = i
+            for j in colm_range:
+                if 0 <=i < num_rows and 0 <=j < num_columns and field[i][j] != -1:
+                    field[i][j] += 1
+    return field
+
+
+print(mine_sweeper([[0, 0], [1, 2]], 3, 4))
