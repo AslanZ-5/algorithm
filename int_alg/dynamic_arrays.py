@@ -244,6 +244,7 @@ def mine_sweeper(bombs, num_rows, num_columns):
  Given an array what is the most frequently occuring element 
 """
 
+
 def freq_count(lst):
     dt = dict()
     max_count = 0
@@ -257,4 +258,32 @@ def freq_count(lst):
             max_count = dt[i]
             max_item = i
     return max_item
-print(freq_count([1,2,3,4,5,6,6,5,4,45,5,6,7,7,8,9,7,6,5]))
+
+
+# print(freq_count([1, 2, 3, 4, 5, 6, 6, 5, 4, 45, 5, 6, 7, 7, 8, 9, 7, 6, 5]))
+
+
+"""
+  Given a string, are all characters unique?
+  should give a True ar False return 
+  Uses python built in structure
+  
+"""
+
+def is_unique_1(string):
+    s = string.replace(' ', '')
+    return len(set(s)) == len(s)
+
+def is_unique_2(string):
+    s = string.replace(' ','')
+    stt = set()
+    for i in s:
+        if i in stt:
+            return False
+        else:
+            stt.add(i)
+    return True
+
+print(is_unique_1('as  ln'))
+print(is_unique_2('as  lln'))
+
