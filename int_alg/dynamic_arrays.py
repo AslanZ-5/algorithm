@@ -220,19 +220,41 @@ def common_element(ls1, ls2):
 
 
 def mine_sweeper(bombs, num_rows, num_columns):
-    field = [[0]*num_columns for i in range(num_rows)]
+    field = [[0] * num_columns for i in range(num_rows)]
     for i in bombs:
-        row_loc,colm_loc = i
+        row_loc, colm_loc = i
         field[row_loc][colm_loc] = -1
 
-        row_range = range(row_loc-1,row_loc+2)
-        colm_range = range(colm_loc-1,colm_loc+2)
+        row_range = range(row_loc - 1, row_loc + 2)
+        colm_range = range(colm_loc - 1, colm_loc + 2)
         for i in row_range:
             c = i
             for j in colm_range:
-                if 0 <=i < num_rows and 0 <=j < num_columns and field[i][j] != -1:
+                if 0 <= i < num_rows and 0 <= j < num_columns and field[i][j] != -1:
                     field[i][j] += 1
     return field
 
 
-print(mine_sweeper([[0, 0], [1, 2]], 3, 4))
+# print(mine_sweeper([[0, 0], [1, 2]], 3, 4))
+
+
+# Frequent Count
+
+"""
+ Given an array what is the most frequently occuring element 
+"""
+
+def freq_count(lst):
+    dt = dict()
+    max_count = 0
+    max_item = None
+    for i in lst:
+        if i in dt:
+            dt[i] += 1
+        else:
+            dt[i] = 1
+        if dt[i] > max_count:
+            max_count = dt[i]
+            max_item = i
+    return max_item
+print(freq_count([1,2,3,4,5,6,6,5,4,45,5,6,7,7,8,9,7,6,5]))
