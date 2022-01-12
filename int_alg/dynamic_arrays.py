@@ -270,12 +270,14 @@ def freq_count(lst):
   
 """
 
+
 def is_unique_1(string):
     s = string.replace(' ', '')
     return len(set(s)) == len(s)
 
+
 def is_unique_2(string):
-    s = string.replace(' ','')
+    s = string.replace(' ', '')
     stt = set()
     for i in s:
         if i in stt:
@@ -284,6 +286,29 @@ def is_unique_2(string):
             stt.add(i)
     return True
 
+
 print(is_unique_1('as  ln'))
 print(is_unique_2('as  lln'))
 
+"""
+ Non repeat element 
+ Take a string and return character that never repeats
+ if multiple uniques then return only the first unique 
+"""
+
+
+def non_repeat_element(string):
+    s = string.replace(' ', '').lower()
+    stt = dict()
+    for i in s:
+        if i in stt:
+            stt[i] += 1
+        else:
+            stt[i] = 1
+    for i in s:
+        if stt[i] == 1:
+            return i
+    return None
+
+
+print(non_repeat_element('Aslnangdesdlds'))
