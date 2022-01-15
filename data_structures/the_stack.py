@@ -61,4 +61,15 @@ def is_paren_balanced(paren_string):
         return False
 
 
-print(is_paren_balanced('(((()])))'))
+def div_by_2(dec_num):
+    s = Stack()
+    while dec_num:
+        remainder = dec_num % 2
+        s.push(remainder)
+        dec_num //= 2
+    bin_num = ''
+    while not s.is_empty():
+        bin_num += str(s.pop())
+    return bin_num
+print(div_by_2(22))
+
