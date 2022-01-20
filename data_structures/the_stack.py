@@ -71,5 +71,22 @@ def div_by_2(dec_num):
     while not s.is_empty():
         bin_num += str(s.pop())
     return bin_num
-print(div_by_2(22))
+# print(div_by_2(22))
+
+
+# Reverse string using python stack
+
+def reverse_string(stack,input_str):
+    # Loop through the string and push contents
+    # character by character onto stack.
+    for i in range(len(input_str)):
+        stack.push(input_str[i])
+
+    str_rev = ''
+    while not stack.is_empty():
+        str_rev += stack.pop()
+    return str_rev
+stack = Stack()
+input_str = 'Hello'
+print(reverse_string(stack,input_str))
 
