@@ -3,6 +3,8 @@ class Node:
         self.data = data
         self.next = None
 
+    def __str__(self):
+        return f'{self.data} -> {self.next}'
 
 class LinkedList:
     def __init__(self):
@@ -87,7 +89,8 @@ llist.append('A')
 llist.append('B')
 llist.append('C')
 llist.append('D')
+llist.prepend('E')
 print(llist.len_iterative())
 print(llist.len_recursive(llist.head))
-# llist.insert_after_node(llist.head.next,"E")
+llist.insert_after_node(llist.head.next,"E")
 llist.print_list()
