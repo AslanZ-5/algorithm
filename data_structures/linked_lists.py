@@ -40,6 +40,7 @@ class LinkedList:
         prev_node.next = new_node
 
     def delete_node(self, key):
+        'Deleting Node by his data value'
         cur_node = self.head
         if cur_node and cur_node.data == key:
             self.head = cur_node.next
@@ -55,6 +56,7 @@ class LinkedList:
         cur_node = None
 
     def delete_node_at_position(self, pos):
+        "Deleteting node by given position"
         cur_node = self.head
         if pos == 0:
             self.head = cur_node.next
@@ -72,6 +74,7 @@ class LinkedList:
         cur_node = None
 
     def len_iterative(self):
+        """ Calculation length with iterative function"""
         cur_node = self.head
         count = 0
         while cur_node:
@@ -80,17 +83,45 @@ class LinkedList:
         return count
 
     def len_recursive(self,node):
+        """ Calculation length with recursive function"""
         if node is None:
             return 0
         return 1 + self.len_recursive(node.next)
+    def swap_node(self,key_1,key_2):
+        if key_1 == key_2:
+            return
+        prev_1 = None
+        cur_1 = self.head
+        while cur_1 and cur_1.data != key_1:
+            prev_1 = cur_1
+            cur_1 = cur_1.next
+        prev_2 = None
+        cur_2 = self.head
+        while cur_2 and cur_2.data != key_2:
+            prev_2 = cur_2
+            cur_2 = cur_2.next
+        if not cur_2 or not cur_1:
+            return
+
+        if prev_1:
+            prev_1.next = cur_2
+        else:
+            self.head = cur_2
+        if prev_2:
+            prev_2.next = cur_1
+        else:
+            self.head = cur_1
+        cur_1.next, cur_2.next = cur_2.next,cur_1.next
 
 llist = LinkedList()
 llist.append('A')
 llist.append('B')
 llist.append('C')
 llist.append('D')
-llist.prepend('E')
+# llist.prepend('E')
 print(llist.len_iterative())
 print(llist.len_recursive(llist.head))
-llist.insert_after_node(llist.head.next,"E")
+# llist.insert_after_node(llist.head.next,"E")
+llist.swap_node('B','C')
+
 llist.print_list()
