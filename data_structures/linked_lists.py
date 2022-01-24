@@ -6,6 +6,7 @@ class Node:
     def __str__(self):
         return f'{self.data} -> {self.next}'
 
+
 class LinkedList:
     def __init__(self):
         self.head = None
@@ -82,12 +83,13 @@ class LinkedList:
             cur_node = cur_node.next
         return count
 
-    def len_recursive(self,node):
+    def len_recursive(self, node):
         """ Calculation length with recursive function"""
         if node is None:
             return 0
         return 1 + self.len_recursive(node.next)
-    def swap_node(self,key_1,key_2):
+
+    def swap_node(self, key_1, key_2):
         if key_1 == key_2:
             return
         prev_1 = None
@@ -111,7 +113,30 @@ class LinkedList:
             prev_2.next = cur_1
         else:
             self.head = cur_1
-        cur_1.next, cur_2.next = cur_2.next,cur_1.next
+        cur_1.next, cur_2.next = cur_2.next, cur_1.next
+
+    def reverse_iterative(self):
+        prev = None
+        cur = self.head
+        while cur:
+            nxt = cur.next
+            cur.next = prev
+            prev = cur
+            cur = nxt
+        self.head = prev
+
+    def reverse_recursive(self):
+        def _reverse_recursive(cur, prev):
+            if not cur:
+                return prev
+            nxt = cur.next
+            cur.next = prev
+            prev = cur
+            cur = nxt
+            return _reverse_recursive(cur, prev)
+
+        self.head = _reverse_recursive(cur=self.head, prev=None)
+
 
 llist = LinkedList()
 llist.append('A')
@@ -119,9 +144,10 @@ llist.append('B')
 llist.append('C')
 llist.append('D')
 # llist.prepend('E')
-print(llist.len_iterative())
-print(llist.len_recursive(llist.head))
+# print(llist.len_iterative())
+# print(llist.len_recursive(llist.head))
 # llist.insert_after_node(llist.head.next,"E")
-llist.swap_node('B','C')
-
+# llist.swap_node('B','C')
+# llist.reverse_iterative()
+llist.reverse_recursive()
 llist.print_list()
