@@ -137,17 +137,62 @@ class LinkedList:
 
         self.head = _reverse_recursive(cur=self.head, prev=None)
 
+    def merge_linked_list(self, llist):
+        """ Merge Two Sorted Lists"""
+        p = self.head
+        q = llist.head
+        s = None
+        if not p:
+            return q
+        if not q:
+            return p
+        if p and q:
+            if p.data <= q.data:
+                s = p
+                p = s.next
+            else:
+                s = q
+                q = s.next
+            new_head = s
+        while p and q:
+            if p.data <= q.data:
+                s.next = p
+                s = p
+                p = s.next
+            else:
+                s.next = q
+                s = q
+                q = s.next
+        if not q:
+            s.next = p
+        if not p:
+            s.next = q
+        return new_head
+
+
+
+
 
 llist = LinkedList()
-llist.append('A')
-llist.append('B')
-llist.append('C')
-llist.append('D')
+llist1 = LinkedList()
+llist.append(1)
+llist.append(5)
+llist.append(7)
+llist.append(9)
+llist.append(10)
+
+llist1.append(2)
+llist1.append(3)
+llist1.append(4)
+llist1.append(6)
+llist1.append(8)
 # llist.prepend('E')
 # print(llist.len_iterative())
 # print(llist.len_recursive(llist.head))
 # llist.insert_after_node(llist.head.next,"E")
 # llist.swap_node('B','C')
 # llist.reverse_iterative()
-llist.reverse_recursive()
+# llist.reverse_recursive()
+llist.merge_linked_list(llist1)
 llist.print_list()
+
