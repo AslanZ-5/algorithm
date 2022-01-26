@@ -153,7 +153,7 @@ class LinkedList:
             else:
                 s = q
                 q = s.next
-            new_head = s
+        new_head = s
         while p and q:
             if p.data <= q.data:
                 s.next = p
@@ -169,23 +169,39 @@ class LinkedList:
             s.next = q
         return new_head
 
+    def remove_duplicates(self):
+        cur = self.head
+        prev = None
+        double_value = dict()
+
+        while cur:
+            if cur.data in double_value:
+                # Remove Node
+                prev.next = cur.next
+                cur = None
+            else:
+                double_value[cur.data] = 1
+                prev = cur
+            cur = prev.next
 
 
 
 
 llist = LinkedList()
-llist1 = LinkedList()
+# llist1 = LinkedList()
 llist.append(1)
-llist.append(5)
-llist.append(7)
-llist.append(9)
-llist.append(10)
+llist.append(6)
+llist.append(1)
+llist.append(4)
+llist.append(2)
+llist.append(2)
+llist.append(4)
 
-llist1.append(2)
-llist1.append(3)
-llist1.append(4)
-llist1.append(6)
-llist1.append(8)
+# llist1.append(2)
+# llist1.append(3)
+# llist1.append(4)
+# llist1.append(6)
+# llist1.append(8)
 # llist.prepend('E')
 # print(llist.len_iterative())
 # print(llist.len_recursive(llist.head))
@@ -193,6 +209,7 @@ llist1.append(8)
 # llist.swap_node('B','C')
 # llist.reverse_iterative()
 # llist.reverse_recursive()
-llist.merge_linked_list(llist1)
+# llist.merge_linked_list(llist1)
+llist.remove_duplicates()
 llist.print_list()
 
