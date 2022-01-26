@@ -184,18 +184,43 @@ class LinkedList:
                 prev = cur
             cur = prev.next
 
+    def print_nth_from_last(self,n):
+        # Method 1
+        total_len = self.len_iterative()
+        cur = self.head
+        while cur:
+            if n == total_len:
+                print(cur.data)
+                return cur
+            total_len -= 1
+            cur = cur.next
+        if cur is None:
+            return
+
+    def print_nth_from_last_method_2(self, n):
+        p = self.head
+        q = self.head
+        count = 0
+        while q and count < n:
+            q = q.next
+            count += 1
+        if not q:
+            print( str(n) + ' is greater than the number of nodes in list.')
+            return
+        while p and q:
+            p = p.next
+            q = q.next
+        return p.data
 
 
 
 llist = LinkedList()
 # llist1 = LinkedList()
-llist.append(1)
-llist.append(6)
-llist.append(1)
-llist.append(4)
-llist.append(2)
-llist.append(2)
-llist.append(4)
+llist.append('A')
+llist.append("B")
+llist.append("C")
+llist.append("D")
+
 
 # llist1.append(2)
 # llist1.append(3)
@@ -210,6 +235,7 @@ llist.append(4)
 # llist.reverse_iterative()
 # llist.reverse_recursive()
 # llist.merge_linked_list(llist1)
-llist.remove_duplicates()
-llist.print_list()
+# llist.remove_duplicates()
+print(llist.print_nth_from_last_method_2(3))
+# llist.print_list()
 
