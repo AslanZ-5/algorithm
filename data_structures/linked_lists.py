@@ -184,7 +184,7 @@ class LinkedList:
                 prev = cur
             cur = prev.next
 
-    def print_nth_from_last(self,n):
+    def print_nth_from_last(self, n):
         # Method 1
         total_len = self.len_iterative()
         cur = self.head
@@ -205,22 +205,69 @@ class LinkedList:
             q = q.next
             count += 1
         if not q:
-            print( str(n) + ' is greater than the number of nodes in list.')
+            print(str(n) + ' is greater than the number of nodes in list.')
             return
         while p and q:
             p = p.next
             q = q.next
         return p.data
 
+    def count(self, item):
+        cur = self.head
+        count = 0
+        while cur:
+            if cur.data == item:
+                count += 1
+            cur = cur.next
+        return count
+
+    def count_recursive(self, item):
+        def rec_count(cur, item):
+            if not cur:
+                return 0
+            if cur.data == item:
+                return 1 + rec_count(cur.next, item)
+            else:
+                return rec_count(cur.next, item)
+
+        return rec_count(self.head, item)
+    def rotate(self,k):
+        p = self.head
+        q = self.head
+        prev = None
+        count = 0
+        while p and count < k:
+            prev = p
+            p = p.next
+            q = q.next
+            count += 1
+        p = prev
+
+        while q:
+            prev = q
+            q = q.next
+        q = prev
+        q.next = self.head
+        self.head = p.next
+        p.next = None
+
+
+
 
 
 llist = LinkedList()
 # llist1 = LinkedList()
-llist.append('A')
-llist.append("B")
-llist.append("C")
-llist.append("D")
+llist.append(1)
+llist.append(2)
+llist.append(3)
+llist.append(4)
+llist.append(5)
+llist.append(6)
 
+llist.print_list()
+print('////////////////////////')
+llist.rotate(4)
+llist.print_list()
 
 # llist1.append(2)
 # llist1.append(3)
@@ -236,6 +283,8 @@ llist.append("D")
 # llist.reverse_recursive()
 # llist.merge_linked_list(llist1)
 # llist.remove_duplicates()
-print(llist.print_nth_from_last_method_2(3))
+# print(llist.print_nth_from_last_method_2(3))
 # llist.print_list()
-
+# print(llist.count_recursive('B'))
+# print(llist.count('A'))
+# print(llist.head)
