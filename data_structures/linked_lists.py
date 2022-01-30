@@ -260,11 +260,24 @@ class LinkedList:
         return s == s[::-1]
 
 
+    def is_palindrome_method_2(self):
+        p = self.head
+        s = []
+        while p:
+            s.append(p.data)
+            p = p.next
+        p = self.head
+        while p:
+            data = s.pop()
+            if data != p.data:
+                return False
+            p = p.next
+        return True
 
 
 llist = LinkedList()
 # llist1 = LinkedList()
-llist.append("t")
+llist.append("R")
 llist.append("A")
 llist.append("D")
 llist.append("A")
@@ -272,6 +285,7 @@ llist.append("R")
 
 llist.print_list()
 print(llist.is_palindrome())
+print(llist.is_palindrome_method_2())
 # print('////////////////////////')
 # llist.rotate(4)
 # llist.print_list()
