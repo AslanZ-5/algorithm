@@ -231,7 +231,8 @@ class LinkedList:
                 return rec_count(cur.next, item)
 
         return rec_count(self.head, item)
-    def rotate(self,k):
+
+    def rotate(self, k):
         p = self.head
         q = self.head
         prev = None
@@ -259,7 +260,6 @@ class LinkedList:
             p = p.next
         return s == s[::-1]
 
-
     def is_palindrome_method_2(self):
         p = self.head
         s = []
@@ -274,6 +274,24 @@ class LinkedList:
             p = p.next
         return True
 
+    def is_palindrome_method_3(self):
+        p = self.head
+        q = self.head
+        i = 0
+        s = []
+        while q:
+            s.append(q)
+            q = q.next
+            i += 1
+        q = s[i-1]
+        count = 1
+        while count <= i//2 + 1:
+            if s[-count].data != p.data:
+                return False
+            p = p.next
+            count += 1
+        return True
+
 
 llist = LinkedList()
 # llist1 = LinkedList()
@@ -284,6 +302,7 @@ llist.append("A")
 llist.append("R")
 
 llist.print_list()
+print(llist.is_palindrome_method_3())
 print(llist.is_palindrome())
 print(llist.is_palindrome_method_2())
 # print('////////////////////////')
