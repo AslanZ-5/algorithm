@@ -5,7 +5,7 @@ def convert(item):
     b = dict()
     for i in item:
         if i in b:
-            b[i] +=1
+            b[i] += 1
         else:
             b[i] = 1
     for i,j in b.items():
