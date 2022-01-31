@@ -303,16 +303,47 @@ class LinkedList:
         sec_to_last.next = None
         self.head = last
 
+    def sum_two_lists(self, llist):
+        p = self.head
+        q = llist.head
+        sum_llist = LinkedList()
+        carry = 0
+        while p or q:
+            if not p:
+                i = 0
+            else:
+                i = p.data
+            if not q:
+                j = 0
+            else:
+                j = q.data
+            s = i + j + carry
+            if s >=10:
+                carry = 1
+                remainder = s % 10
+                sum_llist.append(remainder)
+            else:
+                carry = 0
+                sum_llist.append(s)
+            if p:
+                p = p.next
+            if q:
+                q = q.next
+        sum_llist.print_list()
 
 llist = LinkedList()
 # llist1 = LinkedList()
-llist.append("A")
-llist.append("B")
-llist.append("C")
-llist.append("D")
-llist.append("E")
-llist.move_tail()
-llist.print_list()
+llist.append(5)
+llist.append(6)
+llist.append(3)
+
+llist2 = LinkedList()
+llist2.append(8)
+llist2.append(4)
+llist2.append(2)
+# llist.move_tail()
+# llist.print_list()
+llist.sum_two_lists(llist2)
 # print(llist.is_palindrome_method_3())
 # print(llist.is_palindrome())
 # print(llist.is_palindrome_method_2())
