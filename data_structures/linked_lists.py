@@ -283,28 +283,39 @@ class LinkedList:
             s.append(q)
             q = q.next
             i += 1
-        q = s[i-1]
+        q = s[i - 1]
         count = 1
-        while count <= i//2 + 1:
+        while count <= i // 2 + 1:
             if s[-count].data != p.data:
                 return False
             p = p.next
             count += 1
         return True
 
+    def move_tail(self):
+        """Move Tail to Head"""
+        last = self.head
+        sec_to_last = None
+        while last.next:
+            sec_to_last = last
+            last = last.next
+        last.next = self.head
+        sec_to_last.next = None
+        self.head = last
+
 
 llist = LinkedList()
 # llist1 = LinkedList()
-llist.append("R")
 llist.append("A")
+llist.append("B")
+llist.append("C")
 llist.append("D")
-llist.append("A")
-llist.append("R")
-
+llist.append("E")
+llist.move_tail()
 llist.print_list()
-print(llist.is_palindrome_method_3())
-print(llist.is_palindrome())
-print(llist.is_palindrome_method_2())
+# print(llist.is_palindrome_method_3())
+# print(llist.is_palindrome())
+# print(llist.is_palindrome_method_2())
 # print('////////////////////////')
 # llist.rotate(4)
 # llist.print_list()
