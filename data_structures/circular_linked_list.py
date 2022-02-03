@@ -56,7 +56,7 @@ class CircularLinkedList:
                 cur = cur.next
                 if cur.data == data:
                     prev.next = cur.next
-                    cur = cur.next 
+                    cur = cur.next
 
 
 
