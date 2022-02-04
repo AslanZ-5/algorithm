@@ -94,16 +94,42 @@ class CircularLinkedList:
         print("\n")
         splited_list.print_list()
 
-
+    def remove_node(self, node):
+        if node == self.head:
+            cur = self.head
+            while cur.next != self.head:
+                cur = cur.next
+            cur.next = self.head.next
+            self.head = self.head.next
+        else:
+            cur = self.head
+            prev = None
+            while cur.next != self.head:
+                prev =cur
+                cur = cur.next
+                if cur == node:
+                    prev.next = cur.next
+                    cur = cur.next
+    def josephus_circle(self,step):
+        cur = self.head
+        while len(self) > 1:
+            count = 1
+            while count != step:
+                cur = cur.next
+                count += 1
+            print('Removin: --',cur.data )
+            self.remove_node(cur)
+            cur = cur.next
 
 
 
 llist = CircularLinkedList()
-llist.append('A')
-llist.append('B')
-llist.append('C')
-llist.append('D')
-llist.split_list()
+llist.append(1)
+llist.append(2)
+llist.append(3)
+llist.append(4)
+llist.josephus_circle(2)
+# llist.split_list()
 # llist.prepend("E")
 # llist.remove("A")
-# llist.print_list()
+llist.print_list()
