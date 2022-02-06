@@ -169,3 +169,6 @@ print('-'*20)
 llist1.print_list()
 print('*'*20)
 print(llist.is_circular_linked_list(llist))
+
+
+print('salah','ramzan','isa',sep='--')
