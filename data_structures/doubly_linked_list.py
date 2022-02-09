@@ -54,7 +54,7 @@ class DoublyLinkedList:
                 nxt.prev = new_node
             cur = cur.next
 
-    def append_before_node(self,key,data):
+    def append_before_node(self, key, data):
         cur = self.head
         while cur:
             if cur.prev is None and cur.data == key:
@@ -68,10 +68,10 @@ class DoublyLinkedList:
                 cur.prev = new_node
             cur = cur.next
 
-    def delete(self,key):
+    def delete(self, key):
         cur = self.head
         while cur:
-            if cur.data == key and self.head==cur :
+            if cur.data == key and self.head == cur:
                 if not cur.next:
                     cur = None
                     self.head = None
@@ -101,7 +101,16 @@ class DoublyLinkedList:
                     return
             cur = cur.next
 
-
+    def reverse_list(self):
+        tmp = None
+        cur = self.head
+        while cur:
+            tmp = cur.prev
+            cur.prev = cur.next
+            cur.next = tmp
+            cur = cur.prev
+        if tmp.prev:
+            self.head = tmp.prev
 
 
 dllist = DoublyLinkedList()
@@ -111,9 +120,7 @@ dllist.append(2)
 dllist.append(3)
 dllist.append(4)
 dllist.append(5)
-
-
-
-dllist.delete(1)
-
+dllist.print_list()
+print('---------',end='\n')
+dllist.reverse_list()
 dllist.print_list()
