@@ -101,6 +101,39 @@ class DoublyLinkedList:
                     return
             cur = cur.next
 
+    def delete_node(self, node):
+        cur = self.head
+        while cur:
+            if cur == node and self.head == cur:
+                if not cur.next:
+                    cur = None
+                    self.head = None
+                    return
+                else:
+                    nxt = cur.next
+                    nxt.prev = None
+                    cur.next = None
+                    cur = None
+                    self.head = nxt
+                    return
+            elif cur == node:
+                if not cur.next:
+                    prev = cur.prev
+                    cur.prev = None
+                    prev.next = None
+                    cur = None
+                    return
+                else:
+                    nxt = cur.next
+                    prev = cur.prev
+                    prev.next = nxt
+                    nxt.prev = prev
+                    cur.next = None
+                    cur.prev = None
+                    cur = None
+                    return
+            cur = cur.next
+
     def reverse_list(self):
         tmp = None
         cur = self.head
@@ -111,16 +144,34 @@ class DoublyLinkedList:
             cur = cur.prev
         if tmp.prev:
             self.head = tmp.prev
+    def remove_duplicates(self):
+        cur = self.head
+        d = dict()
+        while cur:
+            if cur.data in d:
+                nxt = cur.next
+                self.delete_node(cur)
+                cur = nxt
+
+            else:
+                d[cur.data] = 1
+                cur = cur.next
 
 
 dllist = DoublyLinkedList()
 
-dllist.append(1)
-dllist.append(2)
-dllist.append(3)
+dllist.append(8)
 dllist.append(4)
-dllist.append(5)
+dllist.append(4)
+dllist.append(6)
+dllist.append(4)
+dllist.append(8)
+dllist.append(4)
+dllist.append(10)
+dllist.append(12)
+dllist.append(12)
+dllist.remove_duplicates()
 dllist.print_list()
-print('---------',end='\n')
-dllist.reverse_list()
-dllist.print_list()
+# print('---------',end='\n')
+# dllist.reverse_list()
+# dllist.print_list()
