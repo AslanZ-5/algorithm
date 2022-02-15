@@ -27,6 +27,8 @@ def two_sum_hash_table(A, target):
     return False
 
 
+# Time complexity: O(n)
+# Space complexity: O(1)
 def two_sum(A, target):
     i = 0
     j = len(A) - 1
