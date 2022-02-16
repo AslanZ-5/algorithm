@@ -1,3 +1,5 @@
+
+
 """
 Bisect :
     - Built-in binary search method in Python.

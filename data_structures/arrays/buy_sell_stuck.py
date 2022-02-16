@@ -1,6 +1,5 @@
 A = [310, 315, 275, 295, 260, 270, 290, 230, 255, 250]
 
-
 # Time complexity: O(n^2)
 # Space complexity: O(1)
 def buy_and_sell(A):
