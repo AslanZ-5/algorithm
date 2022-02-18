@@ -32,6 +32,14 @@ class LinkedList:
         new_node.next = self.head
         self.head = new_node
 
+    def includes(self,node,data):
+        if not node:
+            return False
+        if node.data == data:
+            return True
+
+        return self.includes(node.next,data)
+
     def insert_after_node(self, prev_node, data):
         if not prev_node:
             print('Previous node is not in the list')
@@ -336,7 +344,8 @@ llist = LinkedList()
 llist.append(5)
 llist.append(6)
 llist.append(3)
-
+print(llist.head)
+print(llist.includes(llist.head,2))
 llist2 = LinkedList()
 llist2.append(8)
 llist2.append(4)
