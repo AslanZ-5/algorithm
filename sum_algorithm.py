@@ -24,3 +24,5 @@ start = timeit.timeit()
 sum2(100)
 end = timeit.timeit()
 print('sum2:',end - start)
+
+
