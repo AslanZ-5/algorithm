@@ -1,4 +1,4 @@
-from . import Queue.Queue
+from Queue import Queue
 
 class Node(object):
     def __init__(self, value):
@@ -18,6 +18,8 @@ class BinaryTree(object):
             return self.inorder_print(tree.root, '')
         elif traversal_type == 'postorder':
             return self.postorder_print(tree.root, '')
+        elif traversal_type == 'levelorder':
+            return self.levelorder_print(tree.root)
         else:
             print('Traversal type ' + str(traversal_type) + ' is not supported')
             return False
@@ -44,6 +46,25 @@ class BinaryTree(object):
             traversal += (str(start.value) + '-')
         return traversal
 
+    def levelorder_print(self, start):
+        if start is None:
+            return
+        queue = Queue()
+        queue.enqueue(start)
+        traversal = ''
+        while len(queue) > 0:
+            traversal += str(queue.peek()) + '-'
+            node = queue.dequeue()
+
+            if node.left:
+                queue.enqueue(node.left)
+            if node.right:
+                queue.enqueue(node.right)
+        return traversal
+
+
+
+
 #            1
 #         /     \
 #        2       3
@@ -53,24 +74,28 @@ class BinaryTree(object):
 #
 
 # Set up tree:
-tree = BinaryTree("F")
-tree.root.left = Node("B")
-tree.root.right = Node("G")
-tree.root.left.left = Node("A")
-tree.root.left.right = Node("D")
-tree.root.left.right.left = Node("C")
-tree.root.left.right.right = Node("E")
-tree.root.right.right = Node("I")
-tree.root.right.right.right = Node("H")
-tree.root.right.right.right.left = Node("C")
-tree.root.right.right.right.right = Node("X")
+# tree = BinaryTree("F")
+# tree.root.left = Node("B")
+# tree.root.right = Node("G")
+# tree.root.left.left = Node("A")
+# tree.root.left.right = Node("D")
+# tree.root.left.right.left = Node("C")
+# tree.root.left.right.right = Node("E")
+# tree.root.right.right = Node("I")
+# tree.root.right.right.right = Node("H")
+# tree.root.right.right.right.left = Node("C")
+# tree.root.right.right.right.right = Node("X")
 
-
-# tree.root.right.right.right = Node(8)
+tree = BinaryTree(1)
+tree.root.left = Node(2)
+tree.root.right = Node(3)
+tree.root.left.left = Node(4)
+tree.root.left.right = Node(5)
 
 print("preorder--",tree.print_tree('preorder'))
 print("inorder----",tree.print_tree('inorder'))
 print("postorder-----",tree.print_tree('postorder'))
+print("postorder-----",tree.print_tree('levelorder'))
 
 
 
