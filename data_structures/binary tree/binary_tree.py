@@ -1,3 +1,5 @@
+from . import Queue.Queue
+
 class Node(object):
     def __init__(self, value):
         self.value = value
@@ -69,7 +71,6 @@ tree.root.right.right.right.right = Node("X")
 print("preorder--",tree.print_tree('preorder'))
 print("inorder----",tree.print_tree('inorder'))
 print("postorder-----",tree.print_tree('postorder'))
-
 
 
 
