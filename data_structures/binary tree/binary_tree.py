@@ -1,4 +1,4 @@
-from Queue import Queue
+from Queue import Queue, Stack
 
 class Node(object):
     def __init__(self, value):
@@ -20,6 +20,8 @@ class BinaryTree(object):
             return self.postorder_print(tree.root, '')
         elif traversal_type == 'levelorder':
             return self.levelorder_print(tree.root)
+        elif traversal_type == 'reverse_levelorder':
+            return self.reverse_levelorder_print(tree.root)
         else:
             print('Traversal type ' + str(traversal_type) + ' is not supported')
             return False
@@ -62,6 +64,28 @@ class BinaryTree(object):
                 queue.enqueue(node.right)
         return traversal
 
+    def reverse_levelorder_print(self, start):
+        if start is None:
+            return
+
+        queue = Queue()
+        stack = Stack()
+        queue.enqueue(start)
+
+        traversal = ''
+        while len(queue) > 0:
+            node = queue.dequeue()
+
+            stack.push(node)
+
+            if node.right:
+                queue.enqueue(node.right)
+            if node.left:
+                queue.enqueue(node.left)
+        while len(stack) > 0:
+            node = stack.pop()
+            traversal += str(node.value) + '-'
+        return traversal
 
 
 
@@ -95,7 +119,8 @@ tree.root.left.right = Node(5)
 print("preorder--",tree.print_tree('preorder'))
 print("inorder----",tree.print_tree('inorder'))
 print("postorder-----",tree.print_tree('postorder'))
-print("postorder-----",tree.print_tree('levelorder'))
+print("levelorder-----",tree.print_tree('levelorder'))
+print("reverse_levelorder-----",tree.print_tree('reverse_levelorder'))
 
 
 
