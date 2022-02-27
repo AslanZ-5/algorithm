@@ -87,7 +87,13 @@ class BinaryTree(object):
             traversal += str(node.value) + '-'
         return traversal
 
+    def height(self,node):
 
+        if node is None:
+            return -1
+        left_height = self.height(node.left)
+        right_height = self.height(node.right)
+        return 1 + max(left_height, right_height)
 
 #            1
 #         /     \
@@ -98,23 +104,25 @@ class BinaryTree(object):
 #
 
 # Set up tree:
-# tree = BinaryTree("F")
-# tree.root.left = Node("B")
-# tree.root.right = Node("G")
-# tree.root.left.left = Node("A")
-# tree.root.left.right = Node("D")
-# tree.root.left.right.left = Node("C")
-# tree.root.left.right.right = Node("E")
-# tree.root.right.right = Node("I")
-# tree.root.right.right.right = Node("H")
-# tree.root.right.right.right.left = Node("C")
-# tree.root.right.right.right.right = Node("X")
+tree = BinaryTree("F")
+tree.root.left = Node("B")
+tree.root.right = Node("G")
+tree.root.left.left = Node("A")
+tree.root.left.right = Node("D")
+tree.root.left.right.left = Node("C")
+tree.root.left.right.right = Node("E")
+tree.root.right.right = Node("I")
+tree.root.right.right.right = Node("H")
+tree.root.right.right.right.left = Node("C")
+tree.root.right.right.right.right = Node("X")
 
-tree = BinaryTree(1)
-tree.root.left = Node(2)
-tree.root.right = Node(3)
-tree.root.left.left = Node(4)
-tree.root.left.right = Node(5)
+# tree = BinaryTree(1)
+# tree.root.left = Node(2)
+# tree.root.right = Node(3)
+# tree.root.left.left = Node(4)
+# tree.root.left.right = Node(5)
+print('******')
+print(tree.height(tree.root))
 
 print("preorder--",tree.print_tree('preorder'))
 print("inorder----",tree.print_tree('inorder'))
