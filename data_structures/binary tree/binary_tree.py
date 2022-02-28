@@ -95,6 +95,21 @@ class BinaryTree(object):
         right_height = self.height(node.right)
         return 1 + max(left_height, right_height)
 
+    def size(self):
+        if self.root is None:
+            return 0
+        stack = Stack()
+        stack.push(self.root)
+        size = 1
+        while stack:
+            node = stack.pop()
+            if node.left:
+                size += 1
+                stack.push(node.left)
+            if node.right:
+                size += 1
+                stack.push(node.right)
+        return size
 #            1
 #         /     \
 #        2       3
@@ -123,6 +138,7 @@ tree.root.right.right.right.right = Node("X")
 # tree.root.left.right = Node(5)
 print('******')
 print(tree.height(tree.root))
+print('tree size ---', tree.size())
 
 print("preorder--",tree.print_tree('preorder'))
 print("inorder----",tree.print_tree('inorder'))
