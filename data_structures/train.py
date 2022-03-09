@@ -1,22 +1,18 @@
-# Arbitrary Precision Increment
-
-a = [1,4,9]
-a1 = [9,9,9]
-
-# print(int(''.join(map(str,a)))+1)
+# Two Sum Problem
 
 
-def plus_one(A):
-    A[-1] += 1
-    for i in reversed(range(1,len(A))):
-        if A[i] != 10:
-            break
-        A[i] = 0
-        A[i-1] += 1
-        if A[0] == 10:
-            A[0] = 1
-            A.append(0)
-    return A
 
-print(plus_one(a))
-print(plus_one(a1))
+def two_sum(A, target):
+    ht = dict()
+    for i in range(len(A)):
+        if A[i] in ht:
+            print(ht[A[i]], A[i])
+            return True
+        else:
+            ht[target - A[i]] = A[i]
+    return False
+
+A = [-2, 1, 2, 4, 7, 11]
+target = 20
+print(two_sum(A,target))
+print(-2+11)
