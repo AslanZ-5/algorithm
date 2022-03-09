@@ -1,13 +1,22 @@
-def array_advance(A):
-    furthest_reached = 0
-    last_idx = len(A) - 1
-    i = 0
-    while i <= furthest_reached and furthest_reached < last_idx:
-        furthest_reached = max(furthest_reached, A[i] + i)
-        i += 1
-    return furthest_reached >= last_idx
+# Arbitrary Precision Increment
+
+a = [1,4,9]
+a1 = [9,9,9]
+
+# print(int(''.join(map(str,a)))+1)
 
 
-A1 = [3, 3, 1, 0, 2, 0, 1]
-A2 = [3, 2, 0, 0, 2, 0, 1]
-print(array_advance(A2))
+def plus_one(A):
+    A[-1] += 1
+    for i in reversed(range(1,len(A))):
+        if A[i] != 10:
+            break
+        A[i] = 0
+        A[i-1] += 1
+        if A[0] == 10:
+            A[0] = 1
+            A.append(0)
+    return A
+
+print(plus_one(a))
+print(plus_one(a1))
