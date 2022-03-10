@@ -1,18 +1,13 @@
-# Two Sum Problem
+a = [310, 315, 275, 295, 260, 270, 290, 230, 255, 250]
 
 
+def buy_and_sell_once(a):
+    max_profit = 0
+    min_price = a[0]
+    for price in a:
+        min_price = min(price, min_price)
+        cur_profit = price - min_price
+        max_profit = max(max_profit, cur_profit)
+    return max_profit
 
-def two_sum(A, target):
-    ht = dict()
-    for i in range(len(A)):
-        if A[i] in ht:
-            print(ht[A[i]], A[i])
-            return True
-        else:
-            ht[target - A[i]] = A[i]
-    return False
-
-A = [-2, 1, 2, 4, 7, 11]
-target = 20
-print(two_sum(A,target))
-print(-2+11)
+print(buy_and_sell_once(a))
