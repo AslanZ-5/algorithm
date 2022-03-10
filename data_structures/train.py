@@ -1,13 +1,29 @@
-a = [310, 315, 275, 295, 260, 270, 290, 230, 255, 250]
+class Stack:
+    def __init__(self):
+        self.items = []
+
+    def push(self, item):
+        self.items.append(item)
+
+    def pop(self):
+        return self.items.pop()
+
+    def is_empty(self):
+        return self.items == []
+
+    def peek(self):
+        return self.items[-1]
+
+    def get_stack(self):
+        return self.items
 
 
-def buy_and_sell_once(a):
-    max_profit = 0
-    min_price = a[0]
-    for price in a:
-        min_price = min(price, min_price)
-        cur_profit = price - min_price
-        max_profit = max(max_profit, cur_profit)
-    return max_profit
-
-print(buy_and_sell_once(a))
+a = Stack()
+print(a.is_empty())
+a.push("A")
+a.push("B")
+a.push("C")
+a.push("D")
+print(a.pop())
+print(a.peek())
+print(a.get_stack())
