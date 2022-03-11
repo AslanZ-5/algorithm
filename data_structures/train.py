@@ -18,39 +18,20 @@ class Stack:
         return self.items
 
 
-def is_match(p1, p2):
-    if p1 == '(' and p2 == ')':
-        return True
-    elif p1 == '{' and p2 == '}':
-        return True
-    elif p1 == '[' and p2 == '}':
-        return True
-    else:
-        return False
-
-
-def is_paren_balanced(paren_string):
+def convert_to_binary(num):
     s = Stack()
-    index = 0
-    is_balanced = True
-    while is_balanced is True and index < len(paren_string):
-        paren = paren_string[index]
-        if paren in '({[':
-            s.push(paren)
-        else:
-            if s.is_empty():
-                is_balanced = False
-            else:
-                top = s.pop()
-                if not is_match(top, paren):
-                    is_balanced = False
-        index += 1
-    return is_balanced
-  
+    while num > 0:
+        remainder = num % 2
+        s.push(remainder)
+        num = num // 2
+    bin = ''
+    while not s.is_empty():
+        bin += str(s.pop())
+    return bin
 
-a = '(())}'
-print(is_paren_balanced(a))
 
+print(int(convert_to_binary(242),2))
+print(convert_to_binary(242))
 # a = Stack()
 # print(a.is_empty())
 # a.push("A")
