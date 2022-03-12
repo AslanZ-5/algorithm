@@ -1,43 +1,74 @@
-class Stack:
+class Node(object):
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+
+class LinkedList:
     def __init__(self):
-        self.items = []
+        self.head = None
 
-    def push(self, item):
-        self.items.append(item)
+    def print_linked_list(self):
+        cur_node = self.head
+        while cur_node:
+            print(cur_node.data)
+            cur_node = cur_node.next
 
-    def pop(self):
-        return self.items.pop()
+    def add(self, data):
+        new_node = Node(data)
+        if self.head is None:
+            self.head = new_node
+            return
 
-    def is_empty(self):
-        return self.items == []
+        last_node = self.head
+        while last_node.next:
+            last_node = last_node.next
+        last_node.next = new_node
 
-    def peek(self):
-        return self.items[-1]
+    def prepend(self, node, data):
+        new_node = Node(data)
+        if self.head is None:
+            self.head = new_node
+            return
+        if self.head.data == node:
+            new_node = Node(data)
+            new_node.next = self.head
+            self.head = new_node
 
-    def get_stack(self):
-        return self.items
+        cur_node = self.head
+        prev_node = None
+        while cur_node.next:
+            prev_node = cur_node
+            cur_node = cur_node.next
+            if cur_node.data == node:
+                prev_node.next = new_node
+                new_node.next = cur_node
+            elif cur_node.data != node and cur_node.next is None:
+                break
+
+    def append_to_head(self, data):
+        new_node = Node(data)
+        if self.head is None:
+            self.head = new_node
+            return
+        new_node.next = self.head
+        self.head = new_node
+    def is_include(self,node,data):
+        if not node:
+            return False
+        if node.data == data:
+            return True
+        return self.is_include(node.next, data)
 
 
-def convert_to_binary(num):
-    s = Stack()
-    while num > 0:
-        remainder = num % 2
-        s.push(remainder)
-        num = num // 2
-    bin = ''
-    while not s.is_empty():
-        bin += str(s.pop())
-    return bin
 
-
-print(int(convert_to_binary(242),2))
-print(convert_to_binary(242))
-# a = Stack()
-# print(a.is_empty())
-# a.push("A")
-# a.push("B")
-# a.push("C")
-# a.push("D")
-# print(a.pop())
-# print(a.peek())
-# print(a.get_stack())
+llist = LinkedList()
+llist.add('A')
+llist.add('B')
+llist.add('C')
+llist.add('D')
+llist.add('E')
+llist.add('F')
+llist.prepend('C', "H")
+print(llist.is_include(llist.head,"Q"))
+llist.print_linked_list()
