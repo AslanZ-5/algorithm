@@ -26,10 +26,10 @@ class LinkedList:
         last_node.next = new_node
 
     def prepend(self, node, data):
+        if not self.is_include(self.head,node):
+            print(f'Node "{node}" doesn\'t exist in the list')
+            return False
         new_node = Node(data)
-        if self.head is None:
-            self.head = new_node
-            return
         if self.head.data == node:
             new_node = Node(data)
             new_node.next = self.head
@@ -43,8 +43,6 @@ class LinkedList:
             if cur_node.data == node:
                 prev_node.next = new_node
                 new_node.next = cur_node
-            elif cur_node.data != node and cur_node.next is None:
-                break
 
     def append_to_head(self, data):
         new_node = Node(data)
@@ -69,6 +67,6 @@ llist.add('C')
 llist.add('D')
 llist.add('E')
 llist.add('F')
-llist.prepend('C', "H")
-print(llist.is_include(llist.head,"Q"))
+llist.prepend('R', "H")
+# print(llist.is_include(llist.head,"A"))
 llist.print_linked_list()
