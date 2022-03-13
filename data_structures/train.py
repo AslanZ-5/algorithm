@@ -58,7 +58,49 @@ class LinkedList:
             return True
         return self.is_include(node.next, data)
 
+    def delete_node(self,key):
+        cur_node = self.head
+        if cur_node and cur_node.data == key:
+            self.head = cur_node.next
+            cur_node = None
+            return
+        prev_node = None
+        while cur_node and cur_node.data != key:
+            prev_node = cur_node
+            cur_node = cur_node.next
+        if not cur_node:
+            print('this node isn\'t in the list')
+            return False
+        prev_node.next = cur_node.next
+        cur_node = None
 
+    def delete_by_position(self, pos):
+        if pos > len(self) or pos < 1:
+            print("Your number out of list length ")
+            return False
+        cur_node = self.head
+        if cur_node and pos == 1:
+            self.head = cur_node.next
+            cur_node = None
+            return
+        pos_node = 1
+        prev_node = None
+        while cur_node and pos != pos_node:
+            prev_node = cur_node
+            cur_node = cur_node.next
+            pos_node += 1
+        prev_node.next = cur_node.next
+        cur_node = None
+
+
+
+    def __len__(self):
+        cur_node = self.head
+        count = 0
+        while cur_node:
+            count += 1
+            cur_node = cur_node.next
+        return count
 
 llist = LinkedList()
 llist.add('A')
@@ -67,6 +109,9 @@ llist.add('C')
 llist.add('D')
 llist.add('E')
 llist.add('F')
-llist.prepend('R', "H")
+
+llist.delete_by_position(6)
+# llist.delete_node("C")
+# llist.prepend('R', "H")
 # print(llist.is_include(llist.head,"A"))
 llist.print_linked_list()
