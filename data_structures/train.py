@@ -102,6 +102,37 @@ class LinkedList:
             cur_node = cur_node.next
         return count
 
+    def swap_node(self,key_1, key_2):
+        if key_1 == key_2:
+            return
+        prev_1 = None
+        cur_1 = self.head
+        while cur_1 and cur_1.data != key_1:
+            prev_1 = cur_1
+            cur_1 = cur_1.next
+
+        prev_2 = None
+        cur_2 = self.head
+        while cur_2 and cur_2.data != key_2:
+            prev_2 = cur_2
+            cur_2 = cur_2.next
+
+        if not cur_2 or not  cur_1:
+            return
+
+        if prev_1:
+            prev_1.next = cur_2
+        else:
+            self.head = cur_2
+
+        if prev_2:
+            prev_2.next = cur_1
+        else:
+            self.head = cur_1
+
+        cur_1.next,cur_2.next = cur_2.next,cur_1.next
+
+
 llist = LinkedList()
 llist.add('A')
 llist.add('B')
@@ -109,8 +140,8 @@ llist.add('C')
 llist.add('D')
 llist.add('E')
 llist.add('F')
-
-llist.delete_by_position(6)
+llist.swap_node("B","C")
+# llist.delete_by_position(6)
 # llist.delete_node("C")
 # llist.prepend('R', "H")
 # print(llist.is_include(llist.head,"A"))
