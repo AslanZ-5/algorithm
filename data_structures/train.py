@@ -132,6 +132,27 @@ class LinkedList:
 
         cur_1.next,cur_2.next = cur_2.next,cur_1.next
 
+    def reverse_node(self):
+        prev = None
+        cur = self.head
+        while cur:
+            nxt = cur.next
+            cur.next = prev
+            prev = cur
+            cur = nxt
+        self.head = prev
+
+    def reverse_rec(self):
+        def _reverse_rec(cur,prev):
+            if not cur:
+                return prev
+            nxt = cur.next
+            cur.next = prev
+            prev = cur
+            cur = nxt
+            return _reverse_rec(cur,prev)
+        self.head = _reverse_rec(cur=self.head, prev=None)
+
 
 llist = LinkedList()
 llist.add('A')
@@ -140,7 +161,9 @@ llist.add('C')
 llist.add('D')
 llist.add('E')
 llist.add('F')
-llist.swap_node("B","C")
+llist.reverse_rec()
+# llist.reverse_node()
+# llist.swap_node("B","C")
 # llist.delete_by_position(6)
 # llist.delete_node("C")
 # llist.prepend('R', "H")
