@@ -153,19 +153,67 @@ class LinkedList:
             return _reverse_rec(cur,prev)
         self.head = _reverse_rec(cur=self.head, prev=None)
 
+    def merge_list(self,llist):
+        p = self.head
+        q = llist.head
+        s = None
+        if not p:
+            return q
+        if not q:
+            return p
+        if p.data <= q.data:
+            s = p
+            p = s.next
+        else:
+            s = q
+            q = s.next
+        self.head = s
+        while p and q:
+            if p.data <= q.data:
+                s.next = p
+                s = p
+                p = s.next
+            else:
+                s.next = q
+                s = q
+                q = s.next
+        if not q:
+            s.next = p
+        if not p:
+            s.next = q
+       
 
-llist = LinkedList()
-llist.add('A')
-llist.add('B')
-llist.add('C')
-llist.add('D')
-llist.add('E')
-llist.add('F')
-llist.reverse_rec()
+
+# llist = LinkedList()
+# llist.add('A')
+# llist.add('B')
+# llist.add('C')
+# llist.add('D')
+# llist.add('E')
+# llist.add('F')
+# llist.reverse_rec()
 # llist.reverse_node()
 # llist.swap_node("B","C")
 # llist.delete_by_position(6)
 # llist.delete_node("C")
 # llist.prepend('R', "H")
 # print(llist.is_include(llist.head,"A"))
-llist.print_linked_list()
+
+llist1 = LinkedList()
+llist2 = LinkedList()
+
+
+
+llist1.add(2)
+llist1.add(5)
+llist1.add(7)
+llist1.add(9)
+llist1.add(10)
+
+llist2.add(1)
+llist2.add(3)
+llist2.add(4)
+llist2.add(6)
+llist2.add(8)
+llist1.merge_list(llist2)
+llist1.print_linked_list()
