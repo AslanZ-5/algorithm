@@ -181,7 +181,7 @@ class LinkedList:
             s.next = p
         if not p:
             s.next = q
-       
+
 
 
 # llist = LinkedList()
