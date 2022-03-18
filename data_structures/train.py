@@ -181,6 +181,19 @@ class LinkedList:
             s.next = p
         if not p:
             s.next = q
+    def remove_duplicates(self):
+        d = dict()
+        cur = self.head
+        prev = None
+        while cur:
+            if cur.data in d:
+                prev.next = cur.next
+                cur = None
+            else:
+                d[cur.data] = 1
+                prev = cur
+            cur = prev.next
+
 
 
 
@@ -207,13 +220,15 @@ llist2 = LinkedList()
 llist1.add(2)
 llist1.add(5)
 llist1.add(7)
+llist1.add(7)
 llist1.add(9)
 llist1.add(10)
 
-llist2.add(1)
-llist2.add(3)
-llist2.add(4)
-llist2.add(6)
-llist2.add(8)
-llist1.merge_list(llist2)
+# llist2.add(1)
+# llist2.add(3)
+# llist2.add(4)
+# llist2.add(6)
+# llist2.add(8)
+# llist1.merge_list(llist2)
+llist1.remove_duplicates()
 llist1.print_linked_list()
