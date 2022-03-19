@@ -26,7 +26,7 @@ class LinkedList:
         last_node.next = new_node
 
     def prepend(self, node, data):
-        if not self.is_include(self.head,node):
+        if not self.is_include(self.head, node):
             print(f'Node "{node}" doesn\'t exist in the list')
             return False
         new_node = Node(data)
@@ -51,14 +51,15 @@ class LinkedList:
             return
         new_node.next = self.head
         self.head = new_node
-    def is_include(self,node,data):
+
+    def is_include(self, node, data):
         if not node:
             return False
         if node.data == data:
             return True
         return self.is_include(node.next, data)
 
-    def delete_node(self,key):
+    def delete_node(self, key):
         cur_node = self.head
         if cur_node and cur_node.data == key:
             self.head = cur_node.next
@@ -92,8 +93,6 @@ class LinkedList:
         prev_node.next = cur_node.next
         cur_node = None
 
-
-
     def __len__(self):
         cur_node = self.head
         count = 0
@@ -102,7 +101,7 @@ class LinkedList:
             cur_node = cur_node.next
         return count
 
-    def swap_node(self,key_1, key_2):
+    def swap_node(self, key_1, key_2):
         if key_1 == key_2:
             return
         prev_1 = None
@@ -117,7 +116,7 @@ class LinkedList:
             prev_2 = cur_2
             cur_2 = cur_2.next
 
-        if not cur_2 or not  cur_1:
+        if not cur_2 or not cur_1:
             return
 
         if prev_1:
@@ -130,7 +129,7 @@ class LinkedList:
         else:
             self.head = cur_1
 
-        cur_1.next,cur_2.next = cur_2.next,cur_1.next
+        cur_1.next, cur_2.next = cur_2.next, cur_1.next
 
     def reverse_node(self):
         prev = None
@@ -143,17 +142,18 @@ class LinkedList:
         self.head = prev
 
     def reverse_rec(self):
-        def _reverse_rec(cur,prev):
+        def _reverse_rec(cur, prev):
             if not cur:
                 return prev
             nxt = cur.next
             cur.next = prev
             prev = cur
             cur = nxt
-            return _reverse_rec(cur,prev)
+            return _reverse_rec(cur, prev)
+
         self.head = _reverse_rec(cur=self.head, prev=None)
 
-    def merge_list(self,llist):
+    def merge_list(self, llist):
         p = self.head
         q = llist.head
         s = None
@@ -181,6 +181,7 @@ class LinkedList:
             s.next = p
         if not p:
             s.next = q
+
     def remove_duplicates(self):
         d = dict()
         cur = self.head
@@ -194,7 +195,29 @@ class LinkedList:
                 prev = cur
             cur = prev.next
 
+    def print_nth_from_last(self, n):
+        total_len = len(self)
+        cur = self.head
+        while cur:
+            if total_len == n:
+                return cur.data
+            total_len -= 1
+            cur = cur.next
 
+    def print_nth_from_last_2(self,n):
+        p = self.head
+        q = self.head
+        count = 0
+        while q and count < n:
+            q = q.next
+            count += 1
+        if not q:
+            print(f'{n} is greater than the number of nodes in list')
+
+        while p and q:
+            p = p.next
+            q = q.next
+        return p.data
 
 
 # llist = LinkedList()
@@ -215,8 +238,6 @@ class LinkedList:
 llist1 = LinkedList()
 llist2 = LinkedList()
 
-
-
 llist1.add(2)
 llist1.add(5)
 llist1.add(7)
@@ -230,5 +251,7 @@ llist1.add(10)
 # llist2.add(6)
 # llist2.add(8)
 # llist1.merge_list(llist2)
+print(llist1.print_nth_from_last(2))
+print(llist1.print_nth_from_last_2(2))
 llist1.remove_duplicates()
 llist1.print_linked_list()
