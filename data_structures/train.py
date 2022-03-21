@@ -204,7 +204,7 @@ class LinkedList:
             total_len -= 1
             cur = cur.next
 
-    def print_nth_from_last_2(self,n):
+    def print_nth_from_last_2(self, n):
         p = self.head
         q = self.head
         count = 0
@@ -219,8 +219,27 @@ class LinkedList:
             q = q.next
         return p.data
 
+    def count_occurences_1(self, key):
+        cur = self.head
+        count = 0
+        while cur:
+            if key == cur.data:
+                count += 1
+            cur = cur.next
+        return count
 
-# llist = LinkedList()
+    def count_occ_rec(self, node, key):
+        if not node.next:
+            return 0
+        if key == node.data:
+            return 1 + self.count_occ_rec(node.next, key)
+        else:
+            return  self.count_occ_rec(node.next, key)
+
+
+    # llist = LinkedList()
+
+
 # llist.add('A')
 # llist.add('B')
 # llist.add('C')
@@ -244,6 +263,8 @@ llist1.add(7)
 llist1.add(7)
 llist1.add(9)
 llist1.add(10)
+print('count --- ', llist1.count_occurences_1(7))
+print('count recursevly --- ', llist1.count_occ_rec(llist1.head,7))
 
 # llist2.add(1)
 # llist2.add(3)
