@@ -236,6 +236,39 @@ class LinkedList:
         else:
             return  self.count_occ_rec(node.next, key)
 
+    def sum_two_lists(self, llist):
+        p = self.head
+        q = llist.head
+
+        sum_list = LinkedList()
+
+        carry = 0
+
+        while p or q:
+            if not p:
+                i = 0
+            else:
+                i = p.data
+            if not q:
+                j = 0
+            else:
+                j = q.data
+            s = i + j + carry
+
+            if s >= 10:
+                carry = 1
+                remainder = s % 10
+                sum_list.add(remainder)
+            else:
+                carry = 0
+                sum_list.add(s)
+            if p:
+                p = p.next
+            if q:
+                q = q.next
+        sum_list.print_linked_list()
+
+
 
     # llist = LinkedList()
 
@@ -257,22 +290,23 @@ class LinkedList:
 llist1 = LinkedList()
 llist2 = LinkedList()
 
-llist1.add(2)
 llist1.add(5)
-llist1.add(7)
-llist1.add(7)
-llist1.add(9)
-llist1.add(10)
-print('count --- ', llist1.count_occurences_1(7))
-print('count recursevly --- ', llist1.count_occ_rec(llist1.head,7))
+llist1.add(6)
+llist1.add(3)
+# llist1.add(7)
+# llist1.add(9)
+# llist1.add(10)
+# print('count --- ', llist1.count_occurences_1(7))
+# print('count recursevly --- ', llist1.count_occ_rec(llist1.head,7))
 
-# llist2.add(1)
-# llist2.add(3)
-# llist2.add(4)
+llist2.add(8)
+llist2.add(4)
+llist2.add(2)
 # llist2.add(6)
 # llist2.add(8)
 # llist1.merge_list(llist2)
-print(llist1.print_nth_from_last(2))
-print(llist1.print_nth_from_last_2(2))
-llist1.remove_duplicates()
-llist1.print_linked_list()
+llist1.sum_two_lists(llist2)
+# print(llist1.print_nth_from_last(2))
+# print(llist1.print_nth_from_last_2(2))
+# llist1.remove_duplicates()
+# llist1.print_linked_list()
