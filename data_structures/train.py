@@ -283,6 +283,46 @@ class LinkedList:
         self.head = k_node.next
         k_node.next = None
 
+    def is_palindrom_1(self):
+        cur = self.head
+        st = ''
+        while cur:
+            st += str(cur.data)
+            cur = cur.next
+        return st == st[::-1]
+
+    def is_palindrom_2(self):
+        cur = self.head
+        ls = []
+        while cur:
+            ls.append(cur.data)
+            cur = cur.next
+        cur = self.head
+        while cur:
+            if cur.data != ls.pop():
+                return False
+            cur = cur.next
+        return True
+
+    def is_palindrom_3(self):
+        p = self.head
+        q = self.head
+        ls = []
+        i = 0
+        while q:
+            ls.append(q)
+            i += 1
+            q = q.next
+        q = ls[i - 1]
+
+        count = 1
+        while count <= i//2 +1:
+            if ls[-count].data != p.data:
+                return False
+            p = p.next
+            count += 1
+        return True
+
 
 
     # llist = LinkedList()
@@ -307,11 +347,14 @@ llist2 = LinkedList()
 
 llist1.add(5)
 llist1.add(6)
-llist1.add(3)
-llist1.add(7)
-llist1.add(9)
-llist1.add(10)
-llist1.rotate(4)
+llist1.add(5)
+print(llist1.is_palindrom_1())
+print(llist1.is_palindrom_2())
+print(llist1.is_palindrom_3())
+# llist1.add(7)
+# llist1.add(9)
+# llist1.add(10)
+# llist1.rotate(4)
 # print('count --- ', llist1.count_occurences_1(7))
 # print('count recursevly --- ', llist1.count_occ_rec(llist1.head,7))
 
