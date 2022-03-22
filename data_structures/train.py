@@ -268,6 +268,21 @@ class LinkedList:
                 q = q.next
         sum_list.print_linked_list()
 
+    def rotate(self, key):
+        cur = self.head
+        k = 1
+        k_node = None
+        while cur.next:
+            if key == k:
+                k_node = cur
+            cur = cur.next
+            k += 1
+        if not k_node:
+            return 'Something wrong'
+        cur.next = self.head
+        self.head = k_node.next
+        k_node.next = None
+
 
 
     # llist = LinkedList()
@@ -293,20 +308,21 @@ llist2 = LinkedList()
 llist1.add(5)
 llist1.add(6)
 llist1.add(3)
-# llist1.add(7)
-# llist1.add(9)
-# llist1.add(10)
+llist1.add(7)
+llist1.add(9)
+llist1.add(10)
+llist1.rotate(4)
 # print('count --- ', llist1.count_occurences_1(7))
 # print('count recursevly --- ', llist1.count_occ_rec(llist1.head,7))
 
-llist2.add(8)
-llist2.add(4)
-llist2.add(2)
+# llist2.add(8)
+# llist2.add(4)
+# llist2.add(2)
 # llist2.add(6)
 # llist2.add(8)
 # llist1.merge_list(llist2)
-llist1.sum_two_lists(llist2)
+# llist1.sum_two_lists(llist2)
 # print(llist1.print_nth_from_last(2))
 # print(llist1.print_nth_from_last_2(2))
 # llist1.remove_duplicates()
-# llist1.print_linked_list()
+llist1.print_linked_list()
