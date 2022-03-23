@@ -323,6 +323,15 @@ class LinkedList:
             count += 1
         return True
 
+    def move_tail_to_head(self):
+        cur = self.head
+        prev = None
+        while cur.next:
+            prev = cur
+            cur = cur.next
+        cur.next = self.head
+        self.head = cur
+        prev.next = None
 
 
     # llist = LinkedList()
@@ -345,16 +354,19 @@ class LinkedList:
 llist1 = LinkedList()
 llist2 = LinkedList()
 
+
+llist1.add(7)
+llist1.add(9)
+llist1.add(10)
+# llist1.rotate(4)
 llist1.add(5)
 llist1.add(6)
 llist1.add(5)
-print(llist1.is_palindrom_1())
-print(llist1.is_palindrom_2())
-print(llist1.is_palindrom_3())
-# llist1.add(7)
-# llist1.add(9)
-# llist1.add(10)
-# llist1.rotate(4)
+# print(llist1.is_palindrom_1())
+# print(llist1.is_palindrom_2())
+# print(llist1.is_palindrom_3())
+llist1.move_tail_to_head()
+
 # print('count --- ', llist1.count_occurences_1(7))
 # print('count recursevly --- ', llist1.count_occ_rec(llist1.head,7))
 
