@@ -109,6 +109,33 @@ class CircularLinkedList:
         print('-------------------')
         print(n_list.print_linked_list())
 
+    def split_itnto_two(self):
+        size = len(self)
+        if size == 0:
+            return None
+        if size == 1:
+            return self.head
+        mid = size // 2
+        n_list = CircularLinkedList()
+        cur = self.head
+        c = 0
+        prev = None
+        while cur and c < mid:
+            c += 1
+            prev = cur
+            cur = cur.next
+        prev.next = self.head
+
+        while cur.next != self.head:
+            n_list.add(cur.data)
+            cur = cur.next
+        n_list.add(cur.data)
+
+
+        print(self.print_linked_list())
+        print('-------------------')
+        print(n_list.print_linked_list())
+
 clist = CircularLinkedList()
 clist.add('A')
 clist.add('B')
@@ -116,10 +143,5 @@ clist.add('C')
 clist.add('D')
 clist.print_linked_list()
 # clist.split("C")
+clist.split_itnto_two()
 # clist.remove('A')
-a = clist.head
-a = a.next
-a = a.next
-a = a.next
-print('00000000')
-print(a.next.data)
