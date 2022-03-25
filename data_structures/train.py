@@ -75,6 +75,23 @@ class CircularLinkedList:
                     prev.next = cur.next
                     cur = cur.next
 
+    def _remove_by_node(self, node):
+        if self.head == node:
+            cur = self.head
+            while cur.next != self.head:
+                cur = cur.next
+            cur.next = self.head.next
+            self.head = self.head.next
+        else:
+            cur = self.head
+            prev = None
+            while cur.next != self.head:
+                prev = cur
+                cur = cur.next
+                if cur == node:
+                    prev.next = cur.next
+                    cur = cur.next
+
     def __len__(self):
         cur = self.head
         count = 0
@@ -85,7 +102,7 @@ class CircularLinkedList:
                 break
         return count
 
-    def split(self,key):
+    def split(self, key):
         size = len(self)
         if size == 0:
             return None
@@ -109,7 +126,7 @@ class CircularLinkedList:
         print('-------------------')
         print(n_list.print_linked_list())
 
-    def split_itnto_two(self):
+    def split_into_two(self):
         size = len(self)
         if size == 0:
             return None
@@ -131,17 +148,32 @@ class CircularLinkedList:
             cur = cur.next
         n_list.add(cur.data)
 
-
         print(self.print_linked_list())
         print('-------------------')
         print(n_list.print_linked_list())
+
+    def josephus_problem(self,size):
+        count = 1
+        cur = self.head
+        while cur.next != cur:
+            if count == size:
+                self._remove_by_node(cur)
+                print(f'removed----{cur.data}')
+                count = 0
+            count += 1
+            cur = cur.next
+
 
 clist = CircularLinkedList()
 clist.add('A')
 clist.add('B')
 clist.add('C')
 clist.add('D')
+# clist._remove_by_node(clist.head)
+clist.print_linked_list()
+
+clist.josephus_problem(2)
 clist.print_linked_list()
 # clist.split("C")
-clist.split_itnto_two()
-# clist.remove('A')
+# clist.split_into_two()
+# clist.remove('A')d
