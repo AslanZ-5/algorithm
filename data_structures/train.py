@@ -1,3 +1,5 @@
+from linked_lists.linked_lists import LinkedList
+
 class Node(object):
     def __init__(self, data):
         self.data = data
@@ -162,18 +164,33 @@ class CircularLinkedList:
                 count = 0
             count += 1
             cur = cur.next
+    def is_circular_llist(self,input_list):
+        cur = input_list.head
+        while cur:
+            cur = cur.next
+            if cur == input_list.head:
+                return True
+        return False
+
 
 
 clist = CircularLinkedList()
+llist = LinkedList()
+llist.append(1)
+llist.append(13)
+llist.append(12)
+
+
 clist.add('A')
 clist.add('B')
 clist.add('C')
 clist.add('D')
 # clist._remove_by_node(clist.head)
 clist.print_linked_list()
-
-clist.josephus_problem(2)
-clist.print_linked_list()
+print(clist.is_circular_llist(clist))
+print(clist.is_circular_llist(llist))
+# clist.josephus_problem(2)
+# clist.print_linked_list()
 # clist.split("C")
 # clist.split_into_two()
 # clist.remove('A')d
