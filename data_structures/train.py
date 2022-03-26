@@ -36,6 +36,41 @@ class DoublyLinkedList:
             self.head.prev = new_node
             self.head = new_node
 
+    def append_after(self, key, data):
+        if self.head is None:
+            return "empty list"
+        newnode = Node(data)
+        cur = self.head
+        while cur:
+            if cur.data == key and cur.next is None:
+                self.add(data)
+                return
+            elif cur.data == key and cur.next is not None:
+                nxt = cur.next
+                cur.next = newnode
+                newnode.prev = cur
+                newnode.next = nxt
+                nxt.prev = newnode
+            cur = cur.next
+
+    def append_before(self, key, data):
+        if self.head is None:
+            return "empty list"
+        newnode = Node(data)
+        if self.head.data == key:
+            self.prepend(data)
+            return
+        cur = self.head
+        while cur.next:
+            prev = cur
+            cur = cur.next
+            if cur.data == key:
+                prev.next = newnode
+                newnode.prev = prev
+                newnode.next = cur
+                cur.prev = newnode
+
+
 
 dlist = DoublyLinkedList()
 dlist.add("A")
@@ -43,5 +78,5 @@ dlist.add("B")
 dlist.add("C")
 dlist.add("D")
 
-dlist.prepend("E")
+dlist.append_before("B","E")
 dlist.print_list()
