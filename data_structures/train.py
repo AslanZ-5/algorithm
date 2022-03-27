@@ -93,8 +93,25 @@ class DoublyLinkedList:
                 prev.prev.next = None
                 prev = None
 
+    def reverse(self):
+        tmp = None
+        cur = self.head
+        while cur:
+            tmp = cur.prev
+            cur.prev = cur.next
+            cur.next = tmp
+            cur = cur.prev
+        if tmp:
+            self.head = tmp.prev
 
-
+    def remove_duplicates(self):
+        dn = dict()
+        cur = self.head
+        while cur:
+            if cur.data in dn:
+                self.delete(cur.data)
+            else:
+                dn[cur.data] = 1
 
     def __len__(self):
         count = 0
@@ -105,13 +122,13 @@ class DoublyLinkedList:
         return count
 
 
-
-
 dlist = DoublyLinkedList()
 dlist.add("A")
 dlist.add("B")
 dlist.add("C")
 dlist.add("D")
-dlist.delete("C")
+# dlist.delete("C")
+dlist.remove_duplicates()
+# dlist.reverse()
 # dlist.append_before("B","E")
 dlist.print_list()
