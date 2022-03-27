@@ -71,31 +71,99 @@ class DoublyLinkedList:
                 cur.prev = newnode
 
     def delete(self, key):
-        if self.head.data == key and len(self) == 1:
-            self.head = None
-            return
         cur = self.head
         while cur:
-            prev = cur
+            if cur.data == key and cur == self.head:
+                # Case1
+                if not cur.next:
+                    cur = None
+                    self.head = None
+                    return
+                # Case 2
+                else:
+                    nxt = cur.next
+                    cur.next = None
+                    nxt.prev = None
+                    cur = None
+                    self.head = nxt
+                    return
+            elif cur.data == key:
+                # Case 3
+                if cur.next:
+                    nxt = cur.next
+                    prev = cur.prev
+                    prev.next = nxt
+                    nxt.prev = prev
+                    cur.next = None
+                    cur.prev = None
+                    cur = None
+                    return
+                # Case 4
+                else:
+                    prev = cur.prev
+                    prev.next = None
+                    cur.prev = None
+                    cur = None
+                    return
             cur = cur.next
-            if prev == self.head and prev.data == key:
-                cur.prev = None
-                prev.next = None
-                prev = None
-                self.head = cur
-                return
-            if cur and prev.data == key:
-                cur.prev = prev.prev
-                prev.prev.next = cur
-                prev = None
-                return
-            if not cur:
-                prev.prev.next = None
-                prev = None
 
+    def delete_node(self, node):
+        cur = self.head
+        while cur:
+            if cur == node and cur == self.head:
+                # Case1
+                if not cur.next:
+                    cur = None
+                    self.head = None
+                    return
+                # Case 2
+                else:
+                    nxt = cur.next
+                    cur.next = None
+                    nxt.prev = None
+                    cur = None
+                    self.head = nxt
+                    return
+            elif cur == node:
+                # Case 3
+                if cur.next:
+                    nxt = cur.next
+                    prev = cur.prev
+                    prev.next = nxt
+                    nxt.prev = prev
+                    cur.next = None
+                    cur.prev = None
+                    cur = None
+                    return
+                # Case 4
+                else:
+                    prev = cur.prev
+                    prev.next = None
+                    cur.prev = None
+                    cur = None
+                    return
+            cur = cur.next
 
+    def reverse(self):
+        tmp = None
+        cur = self.head
+        while cur:
+            tmp = cur.prev
+            cur.prev = cur.next
+            cur.next = tmp
+            cur = cur.prev
+        if tmp:
+            self.head = tmp.prev
 
-
+    def remove_duplicates(self):
+        dn = dict()
+        cur = self.head
+        while cur:
+            if cur.data in dn:
+                self.delete_node(cur)
+            else:
+                dn[cur.data] = 1
+            cur = cur.next
     def __len__(self):
         count = 0
         cur = self.head
@@ -105,13 +173,14 @@ class DoublyLinkedList:
         return count
 
 
-
-
 dlist = DoublyLinkedList()
 dlist.add("A")
 dlist.add("B")
 dlist.add("C")
 dlist.add("D")
-dlist.delete("C")
+dlist.add("C")
+# dlist.delete("C")
+dlist.remove_duplicates()
+# dlist.reverse()
 # dlist.append_before("B","E")
 dlist.print_list()
