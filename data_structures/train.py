@@ -164,6 +164,18 @@ class DoublyLinkedList:
             else:
                 dn[cur.data] = 1
             cur = cur.next
+    def pairs_with_sum(self, sum_val):
+        pairs = list()
+        p = self.head
+        q = None
+        while p:
+            q = p.next
+            while q:
+                if q.data + p.data == sum_val:
+                    pairs.append(f'({p.data},{q.data})')
+                q = q.next
+            p = p.next
+        return pairs
     def __len__(self):
         count = 0
         cur = self.head
@@ -174,11 +186,12 @@ class DoublyLinkedList:
 
 
 dlist = DoublyLinkedList()
-dlist.add("A")
-dlist.add("B")
-dlist.add("C")
-dlist.add("D")
-dlist.add("C")
+dlist.add(1)
+dlist.add(2)
+dlist.add(3)
+dlist.add(4)
+dlist.add(5)
+print(dlist.pairs_with_sum(5))
 # dlist.delete("C")
 dlist.remove_duplicates()
 # dlist.reverse()
