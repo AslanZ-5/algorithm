@@ -30,7 +30,6 @@ class Queue(object):
         return len(self.items)
 
 
-
 class BinaryTree(object):
     def __init__(self, root):
         self.root = Node(root)
@@ -69,7 +68,7 @@ class BinaryTree(object):
             traversal += (str(start.value) + "-")
         return traversal
 
-    def levelorder_print(self,start):
+    def levelorder_print(self, start):
         if start is None:
             return
         queue = Queue()
@@ -84,6 +83,12 @@ class BinaryTree(object):
                 queue.enqueue(node.right)
         return traversal
 
+    def height_node(self, node):
+        if node is None:
+            return -1
+        left_height = self.height_node(node.left)
+        right_height = self.height_node(node.right)
+        return 1 + max(left_height,right_height)
 
 
 tree = BinaryTree(1)
@@ -93,7 +98,7 @@ tree.root.left.left = Node(4)
 tree.root.left.right = Node(5)
 tree.root.right.left = Node(6)
 tree.root.right.right = Node(7)
-
+print(tree.height_node(tree.root))
 print('preorder', tree.print_tree('preorder'))
 print('inorder', tree.print_tree('inorder'))
 print('postorder', tree.print_tree('postorder'))
