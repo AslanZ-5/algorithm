@@ -103,9 +103,9 @@ class BinaryTree(object):
             node = n_queue.dequeue()
             stack.push(node.value)
             if node.left:
-                n_queue.enqueue(node.left.value)
+                n_queue.enqueue(node.left)
             if node.right:
-                n_queue.enqueue(node.right.value)
+                n_queue.enqueue(node.right)
         a = ''
         while not stack.is_empty():
             a += str(stack.pop()) + '-'
