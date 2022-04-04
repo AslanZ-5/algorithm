@@ -15,6 +15,12 @@ class Stack:
         if not self.is_empty():
             return self.items[-1]
 
+    def size(self):
+        return len(self.items)
+
+    def __len__(self):
+        return self.size()
+
     def get_stack(self):
         return self.items
 
@@ -71,12 +77,14 @@ def div_by_2(dec_num):
     while not s.is_empty():
         bin_num += str(s.pop())
     return bin_num
+
+
 # print(div_by_2(22))
 
 
 # Reverse string using python stack
 
-def reverse_string(stack,input_str):
+def reverse_string(stack, input_str):
     # Loop through the string and push contents
     # character by character onto stack.
     for i in range(len(input_str)):
@@ -86,7 +94,8 @@ def reverse_string(stack,input_str):
     while not stack.is_empty():
         str_rev += stack.pop()
     return str_rev
+
+
 stack = Stack()
 input_str = 'Hello'
-print(reverse_string(stack,input_str))
-
+print(reverse_string(stack, input_str))

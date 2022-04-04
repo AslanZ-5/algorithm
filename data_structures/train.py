@@ -1,3 +1,6 @@
+from stacks.the_stack import Stack
+
+
 class Node(object):
     def __init__(self, value):
         self.value = value
@@ -88,7 +91,26 @@ class BinaryTree(object):
             return -1
         left_height = self.height_node(node.left)
         right_height = self.height_node(node.right)
-        return 1 + max(left_height,right_height)
+        return 1 + max(left_height, right_height)
+
+    def reverse_levelorder_print(self, start):
+        if start is None:
+            return
+        n_queue = Queue()
+        stack = Stack()
+        n_queue.enqueue(start)
+        while len(n_queue) > 0:
+            node = n_queue.dequeue()
+            stack.push(node.value)
+            if node.left:
+                n_queue.enqueue(node.left.value)
+            if node.right:
+                n_queue.enqueue(node.right.value)
+        a = ''
+        while not stack.is_empty():
+            a += str(stack.pop()) + '-'
+        return a
+
 
 
 tree = BinaryTree(1)
@@ -98,6 +120,7 @@ tree.root.left.left = Node(4)
 tree.root.left.right = Node(5)
 tree.root.right.left = Node(6)
 tree.root.right.right = Node(7)
+print(tree.reverse_levelorder_print(tree.root))
 print(tree.height_node(tree.root))
 print('preorder', tree.print_tree('preorder'))
 print('inorder', tree.print_tree('inorder'))
