@@ -110,6 +110,25 @@ class BinaryTree(object):
         while not stack.is_empty():
             a += str(stack.pop()) + '-'
         return a
+    def size(self):
+        if self.root is None:
+            return
+        stack = Stack()
+        stack.push(self.root)
+        size = 0
+        while not stack.is_empty():
+            node = stack.pop()
+            size += 1
+            if node.left:
+                stack.push(node.left)
+            if node.right:
+                stack.push(node.right)
+        return size
+    def size_(self,node):
+        if node is None:
+            return 0
+        return 1 + self.size_(node.left) + self.size_(node.right)
+
 
 
 
@@ -120,6 +139,8 @@ tree.root.left.left = Node(4)
 tree.root.left.right = Node(5)
 tree.root.right.left = Node(6)
 tree.root.right.right = Node(7)
+print('size=======',tree.size())
+print('size------',tree.size_(tree.root))
 print(tree.reverse_levelorder_print(tree.root))
 print(tree.height_node(tree.root))
 print('preorder', tree.print_tree('preorder'))
