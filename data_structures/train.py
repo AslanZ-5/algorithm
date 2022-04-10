@@ -15,7 +15,6 @@ class BST:
         else:
             self._insert(data, self.root)
 
-
     def _insert(self, data, cur_node):
         if data < cur_node.data:
             if cur_node.left is None:
@@ -31,8 +30,22 @@ class BST:
         else:
             print("Value is already present in tree.")
 
+    def find(self, data):
+        if self.root:
+            is_found = self._find(data, self.root)
+            if is_found:
+                return True
+            return False
+        else:
+            print('This tree is empty')
 
-
+    def _find(self, data, cur_node):
+        if data > cur_node.data and cur_node.right:
+            return self._find(data, cur_node.right)
+        elif data < cur_node.data and cur_node.left:
+            return self._find(data, cur_node.left)
+        if data == cur_node.data:
+            return True
 
     def preorder_print(self, start, traversal):
         """Root->Left->Right"""
@@ -43,8 +56,6 @@ class BST:
         return traversal
 
 
-
-
 bst = BST()
 bst.insert(8)
 bst.insert(3)
@@ -52,8 +63,4 @@ bst.insert(10)
 bst.insert(1)
 bst.insert(6)
 
-a = bst.root
-a = a.left.right
-print(a)
-print(bst.preorder_print(bst.root,''))
-
+print(bst.preorder_print(bst.root, ''))
