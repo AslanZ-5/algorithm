@@ -54,7 +54,8 @@ class BST:
             traversal = self.preorder_print(start.left, traversal)
             traversal = self.preorder_print(start.right, traversal)
         return traversal
-
+    def in_order_print_tree(self):
+        pass
 
 bst = BST()
 bst.insert(8)
