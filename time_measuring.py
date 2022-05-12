@@ -102,11 +102,11 @@ def comp(lst):
 
 # Worst Case vs Best Case
 """ Many times we are only concerned with the worst possible cose of an algorithm, but in an interview
-setting its important to keep in mind that worst case and best case scenarios may be completely different Big-O times."""
+setting its important to keep in mind that worst case and best case scenarios may be completely different Big-O times. """
 
 
 def matcher(lst, match):
-    """ Given a list lst, return a boolean indicating if match item is in the list"""
+    """ Given a list lst, return a boolean indicating if match item is in the list """
     for item in lst:
         if item == match:
             return True
@@ -123,7 +123,7 @@ complexity is the same, but instead of checking the time of operations, we check
 
 
 def memory(n):
-    """Prints 'hello world!' n times"""
+    """ Prints 'hello world!' n times"""
     for x in range(n):
         print('hello world!')
     '''O(n) for time complexity but what about space complexity.
