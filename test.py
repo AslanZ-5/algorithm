@@ -1,30 +1,35 @@
-# Given a string, find the first uppercase character.
-# Solve using both an iterative and recursive solution.
+# binary search
 
-input_str_1 = "lucidProgramming"
-input_str_2 = "Lucidrogramming"
-input_str_3 = "lucidprogramming"
+def bin_search(d,target):
+    l = 0
+    n = len(d) - 1
 
-
-def find_upper(st):
-    for i in st:
-        if i.isupper():
-            print(i)
+    while l < n:
+        mid = (l + n) // 2
+        if d[mid] == target:
+            print(d[mid])
             return True
+        elif d[mid] < target:
+            l = mid + 1
+        else:
+            n = mid - 1
+    print('you fucked up!!!')
     return False
 
-# print(find_upper(input_str_1))
-
-
-def find_upper_rec(st,inx=0):
-    if st[inx].isupper():
-        print(st[inx])
-        return True
-    if inx == len(st) -1:
+def recursion_bin_search(d,target,l,n):
+    if l >= n:
         return False
-    return find_upper_rec(st,inx+1)
+    mid = (l+n) //2
+    if d[mid] == target:
+        print(d[mid])
+        return True
+    elif d[mid] < target:
+        return recursion_bin_search(d,target,mid +1,n)
+    else:
+        return recursion_bin_search(d, target,l,mid -1)
 
-print(find_upper(input_str_3))
 
-print('----------rec')
-print(find_upper_rec(input_str_3))
+
+data = [2,4,5,7,8,9,12,14,17,19,22,25,27,28,33,37]
+print(bin_search(data,28))
+print(recursion_bin_search(data,28,0,len(data)-1))
