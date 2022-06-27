@@ -1,35 +1,24 @@
-# binary search
+# First uppercase later
 
-def bin_search(d,target):
-    l = 0
-    n = len(d) - 1
+input_str_1 = 'lucidProgramming'
+input_str_2 = 'LucidProgramming'
+input_str_3 = 'lucidprogramming'
 
-    while l < n:
-        mid = (l + n) // 2
-        if d[mid] == target:
-            print(d[mid])
-            return True
-        elif d[mid] < target:
-            l = mid + 1
-        else:
-            n = mid - 1
-    print('you fucked up!!!')
-    return False
-
-def recursion_bin_search(d,target,l,n):
-    if l >= n:
-        return False
-    mid = (l+n) //2
-    if d[mid] == target:
-        print(d[mid])
-        return True
-    elif d[mid] < target:
-        return recursion_bin_search(d,target,mid +1,n)
+def inter_s(str_inp):
+    for i in str_inp:
+        if i.isupper():
+            return i
     else:
-        return recursion_bin_search(d, target,l,mid -1)
+        return None
 
 
 
-data = [2,4,5,7,8,9,12,14,17,19,22,25,27,28,33,37]
-print(bin_search(data,28))
-print(recursion_bin_search(data,28,0,len(data)-1))
+def rec_s(str_inp):
+    if str_inp[0].isupper():
+        return str_inp[0]
+    if len(str_inp) < 2:
+        return None
+    return rec_s(str_inp[1:])
+
+print(inter_s(input_str_3))
+print(rec_s(input_str_3))
