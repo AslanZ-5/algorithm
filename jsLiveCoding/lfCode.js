@@ -362,4 +362,33 @@ function isAnagram(str1,str2){
 
 }
 
-console.log('___isAnagram___',isAnagram('fairy tales', 'rail safety'))
+let testMoney = 1036.28;
+
+let bills = {
+	hundredDollar: 100.0,
+	tenDollar: 10.0,
+	fiveDollar: 5.0,
+	oneDollar: 1.0,
+	quarter: 0.25,
+	dime: 0.1,
+	nickel: 0.05,
+	penny: 0.01
+}
+
+function findChange(currency, amount){
+    let resultBills = {};
+	let cashLeftover = amount;
+    for (let i in currency){
+        while (cashLeftover > currency[i]){
+            if (i in resultBills){
+                resultBills[i] += 1
+            }else{
+                resultBills[i] = 1
+            }
+            cashLeftover = (cashLeftover - currency[i]).toFixed(2)
+        }
+    console.log('change bills: ', resultBills)
+    }
+}
+
+findChange(bills,testMoney)
