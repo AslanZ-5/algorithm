@@ -391,4 +391,57 @@ function findChange(currency, amount){
     }
 }
 
-findChange(bills,testMoney)
+// findChange(bills,testMoney)
+
+function isPalindromPermutation(string){
+    const str = string.toLowerCase().replace(' ', '')
+    const h = {}
+
+    for (let i of str){
+        if (i in h){
+            h[i] += 1
+        }else{
+            h[i] = 1 
+        }
+    }
+    let countOdd = 0;
+    for (let i in h){
+        if (h[i] % 2 !== 0 && countOdd === 0){
+            countOdd += 1
+        }else if (h[i] % 2 !== 0 && countOdd !== 0){
+            return false
+        }
+    }
+    return true
+}
+
+// console.log('__isPalindromPermutation__', isPalindromPermutation('ddssds'))
+
+function isPermutation(str1,str2){
+    str1 = str1.replace(' ', '').toLowerCase().split('').sort().join('')
+    str2 = str2.replace(' ', '').toLowerCase().split('').sort().join('')
+    if (str1.length !== str2.length){
+        return false
+    }
+    for (let i = 0; i < str1.length; i++){
+        if (str1[i] !== str2[i]){
+            return false
+        }
+    }
+    return true
+
+
+}
+// console.log("__isPermutation__",isPermutation('madam', 'adamm'))
+
+
+function fibonachiIter(n){
+    const fib = [0,1]
+    for (let i = 2; i < n; i++){
+        fib[i] = fib[i - 1] + fib[i - 2]
+    }
+    return fib[fib.length - 1]
+}
+
+console.log("___fibonach Iter__",fibonachiIter(10))
+// console.log('******')
