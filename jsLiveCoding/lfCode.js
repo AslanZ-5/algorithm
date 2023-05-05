@@ -200,10 +200,6 @@ const mergeTimestart = new Date().getTime()
 // console.log("___insetionSort___",insetionSort([8,6,4,23,4,6,7,2,8,0]))
 // console.log("___insetionSort___",insetionSort([8,6,4,23,4,6,7,2,8,0]))
 
-
-
-
-
 const mEnd = new Date().getTime()
 
 console.log('merge time measure',mEnd - mergeTimestart)
@@ -437,11 +433,264 @@ function isPermutation(str1,str2){
 
 function fibonachiIter(n){
     const fib = [0,1]
-    for (let i = 2; i < n; i++){
+    for (let i = 2; i < n + 1; i++){
         fib[i] = fib[i - 1] + fib[i - 2]
     }
     return fib[fib.length - 1]
 }
+function fibonachiRec(n){
+    if (n < 2){
+        return  n
+    }
+    return fibonachiRec(n -1 ) + fibonachiRec(n - 2)
+}
 
-console.log("___fibonach Iter__",fibonachiIter(10))
+// console.log("___fibonach Iter__",fibonachiIter(6))
+// console.log("___fibonach Rec__",fibonachiRec(6))
+
+function factorial(n){
+    let fac = 1;
+    for (let i = 2; i <= n; i++){
+        fac *= i
+    }
+    return fac
+}
+
+function factorialRec(n){
+    if (n <= 1){
+        return 1
+    }
+    return n * factorialRec(n -1)
+}
+console.log('__factorial__', factorial(5))
+console.log('__factorialRec__', factorialRec(5))
+
+function isPrime(n){
+    for (let i = 2; i < Math.sqrt(n); i++){
+        if (n % i === 0) return false
+    }
+    return n > 1
+}
+console.log('__isPrime__', isPrime(2))
+
+
+function powerOfTwo(n){
+    while (n > 1){
+        console.log(n)
+        if (n % 2 !== 0){
+            return false
+        }
+        n /= 2
+
+    }
+    return true
+}
+console.log('__poweroftwo__',powerOfTwo(8))
+
+
+function cartesianProd(arr1,arr2){
+    const arr = []
+    for (let i = 0; i < arr1.length; i++){
+
+        for ( let j = 0; j < arr2.length; j++){
+            arr.push([arr1[i],arr2[j]])
+        }
+    }
+    return arr
+}
+console.log("__cartesian__", cartesianProd([1,2],[3,4]))
 // console.log('******')
+
+
+
+function flatten(array) {
+    const arr = [];
+    for (let i = 0; i < array.length; i++){
+        if (Array.isArray(array[i])){
+           const flat = flatten(array[i])
+           for (let j = 0; j < flat.length; j++){
+            arr.push(flat[j])
+           }
+        }else{
+            arr.push(array[i])
+        }
+       
+    }
+    return arr
+  }
+  
+  console.log('__flattend__',flatten([[1], [[2, 3]], [[[4]]]])) // -> [1, 2, 3, 4]
+
+  function removeDupes(str) {
+    // const chars = {}
+    // const res = []
+  
+    // for (let i = 0; i < str.length; i++) {
+      // if (!chars[str[i]]) {
+        // chars[str[i]] = true
+        // res.push(str[i])
+      // }
+    // }
+  
+    // return res.join('')
+  
+    return Array.from(new Set(str)).join('')
+  }
+
+  function highestFrequency(array) {
+    const map = {}
+    let maxFreq = 0
+    let maxFreqStr = array[0]
+  
+    for (let i = 0; i < array.length; i++) {
+      const current = array[i]
+  
+      if (map[current]) {
+        map[current]++
+      } else {
+        map[current] = 1
+      }
+  
+      if (map[current] > maxFreq) {
+        maxFreq = map[current]
+        maxFreqStr = current
+      }
+    }
+  
+    return maxFreqStr
+  }
+  console.log('__removeDublicate__', Array.from(new Set('aaddss')))
+
+
+function isRotated(string,compare){
+    if (string.length !== compare.length){
+        return false
+    }
+    for (let i = 0; i < string.length; i++){
+        const rotated =  (string.slice(i,string.length)) +string.slice(0,i) 
+        // const compared = string.slice(0,i) + (string.slice(i,string.length))
+        if (rotated === compare){
+            return true
+        }
+    }
+    return false
+}
+
+console.log("__isRotated__", isRotated('javascrip1', 'scriptjava'))
+
+function arraySubset(source, subset) {
+    if (source.length < subset.length){
+        return false
+    }
+    for (let i = 0; i < source.length; i++){
+        const index = source.indexOf(subset[i])
+        if (index === -1){
+            return false
+        }
+        delete source[index]
+        
+    }
+    return true
+  }
+  console.log("__arraySubset__",arraySubset([2, 1, 3], [1, 2, 3])) // -> true
+  console.log(arraySubset([2, 1, 1, 3], [1, 2, 3])) // -> true
+  console.log(arraySubset([1, 1, 1, 3], [1, 3, 3])) // -> false
+  console.log(arraySubset([1, 2], [1, 2, 3])) // -> false
+
+
+
+  function allAnagrams(array) {
+    const sorted = array.map(str => str.split('').sort().join(''))
+  
+    for (let i = 1; i < sorted.length; i++) {
+      if (sorted[i] !== sorted[0]) {
+        return false
+      }
+    }
+    return true
+  }
+  
+  console.log(allAnagrams(['abcd', 'bdac', 'cabd'])) // true
+  console.log(allAnagrams(['abcd', 'bdXc', 'cabd'])) // false
+
+//ROTATE MATRIX
+  const matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+  ]
+
+function rotateMatrix(mtrx){
+    const len = mtrx.length
+    const newMtrx = mtrx.map(()=> [])
+
+    for (let i = 0; i < len; i++){
+
+        for (let j = 0; j < len; j++){
+
+            newMtrx[j][len - 1 - i] = mtrx[i][j]
+         }
+    }
+    return newMtrx
+
+}
+console.log('__rotateMatrix__', rotateMatrix(matrix))
+
+
+function validParantheses(prnt){
+    const openBrackets = '{[('
+    const hs = {
+        "}": "{",
+        ")": "(",
+        "]": "[",
+    };
+    const stack = [];
+
+    for (let i = 0; i < prnt.length; i++){
+        if (openBrackets.includes(prnt[i])){
+            stack.push(prnt[i])
+        }
+        if (prnt[i] in hs){
+            if (stack[stack.length - 1] === hs[prnt[i]]){
+                stack.pop()
+            }else{
+                return false
+            }
+        }
+    }
+    return !stack.length 
+
+}
+console.log("__validParantheses__",validParantheses('(()){(}{{}}'))
+
+function isEqual(obj1,obj2){
+    if (Number.isNaN(obj1) && Number.isNaN(obj2)){
+        return true
+    }
+    if (typeof obj1 !== 'object'){
+        return obj1 === obj2
+    }
+    if (Object.keys(obj1).length !== Object.keys(obj2).length){
+        return false
+    }
+    const keys = Object.keys(obj1)
+    
+    for (let key of keys){
+    
+        if (!isEqual(obj1[key], obj2[key])){
+            return false
+        }
+    }
+    return true
+}
+
+console.log('__isEqual__', isEqual({obj:2,kd:32, employee:{name:'aslan'}}, {obj:2, kd:32, employee:{name: 'aslan'}}))
+
+
+// Bind function
+Function.prototype.myBind = function(context, ...args) {
+    return (...rest) => {
+      return this.call(context, ...args.concat(rest))
+    }
+  }
+  
