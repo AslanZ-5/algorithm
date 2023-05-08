@@ -32,6 +32,7 @@ function binSearchRec(arr,t,start=0,end=arr.length - 1){
     }
 }
 
+
 // two sorted arrays intersection
 
 function intersectionOfTwoArrays(arr1,arr2){
@@ -56,9 +57,35 @@ function intersectionOfTwoArrays(arr1,arr2){
 }
 
 // console.log([121,3,2,3,5,7,11].sort((a,b) => a - b))
-// console.log(intersectionOfTwoArrays([2,3,3,5,7,11], [3,3,7,15,31]))
+// console.log(intersectionOfTwoArrays([2,3,3,5,7,11], [3,3,5,7,15,31]))
+
+function intersectionOfTwoSortedArrays(arr1,arr2){
+    let i = 0;
+    let j = 0; 
+    const intersection = []
+    while (i < arr1.length && j < arr2.length){
+        if (arr1[i] === arr2[j]){
+            if (arr1[i] !== arr1[i - 1]){
+                intersection.push(arr1[i])
+            }
+            i += 1
+            j += 1
+        }
+        else if (arr1[i] < arr2[j]){
+            i += 1
+        }else{
+            j += 1
+        }
+   
+    }
+    return intersection
+}
+console.log("myintersection",intersectionOfTwoSortedArrays([2,3,3,5,7,11], [3,3,7,15,31]))
+
 
 const arr = [4,3,6,8,5,2,5,2,2,54,89,0,65,34]
+
+
 
 function sortSelect(arr){
     for (let i = 0; i < arr.length; i++ ){
@@ -75,8 +102,8 @@ function sortSelect(arr){
     return arr
     }
 
-    function sortBuble(arr){
-        let count = 0
+
+function sortBuble(arr){
         for (let i = 0; i < arr.length; i++ ){
             for (let j = 0; j < arr.length - i ; j++){
                     if (arr[j] > arr[ j+ 1]){
@@ -84,15 +111,13 @@ function sortSelect(arr){
                         arr[j] = arr[j+1]
                         arr[j + 1] = tmp 
                     }
-                    count += 1
             }
         
         }
-        console.log(count)
         return arr
     }
 
-    function bubbleSorting(arr){
+function bubbleSorting(arr){
         let isSorted = false
         let count = 0;
        while (!isSorted){
@@ -128,12 +153,27 @@ function merge(leftArr, rightArr){
     while(leftArr.length && rightArr.length){
         if(leftArr[0] < rightArr[0]){
             sortedArr.push(leftArr.shift())
+        }else{
+            sortedArr.push(rightArr.shift())
         }}
     return [...sortedArr, ...leftArr, ...rightArr]
 }
 
 
-function insetionSort(arr){
+function insSort(arr){
+    for (let i = 1; i < arr.length; i++){
+        let j = i;
+        while(arr[j] < arr[j-1] && j > 0){
+            const tem = arr[j]
+            arr[j] = arr[j-1]
+            arr[j-1] = tem
+            j--
+        }
+    }
+    return arr
+}
+console.log('__ins__& sorted', insSort(arr))
+function insertionSort(arr){
     for (let i = 1; i < arr.length; i++){
         for (let j = i; j > 0; j--){
             if (arr[j] < arr[j - 1]){
@@ -147,7 +187,7 @@ function insetionSort(arr){
     }
     return arr
 }
-function insetionSort2(arr){
+function insertionSort2(arr){
     for (let i = 1; i < arr.length; i++){
         j = i
        while(arr[j] < arr[j - 1] && j > 0){
@@ -180,14 +220,36 @@ function quickSort(arr){
     }
 
 }
+
+function qS(arr){
+    if (arr.length < 2){
+        return arr
+    }
+
+    const pivot = Math.floor(Math.random * arr.length)
+    const sl = []
+    const lr = []
+    const equal =[]
+    for (let i = 0; i < arr.length; i++){
+        if (arr[i] == arr[pivot]){
+            equal.push(arr[i])
+        }else if (arr[i] < arr[pivot]){
+            sl.push(arr[i])
+        }else{
+            lr.push(arr[i])
+        }
+    }
+    return qS([...sl, ...equal, ...lr])
+
+}
 console.log("___selectSort___",sortSelect([8,6,4,23,4,6,7,2,8,0]))
 console.log("___bubleSort2___",bubbleSorting([8,6,4,23,4,6,7,2,8,0]))
-console.log("___mergeSort___",bubbleSorting([8,6,4,23,4,6,7,2,8,0]))
+console.log("___mergeSort___",mergeSort([8,6,4,23,4,6,7,2,8,0]))
 console.log("___bubleSort___",sortBuble([8,6,4,23,4,6,7,2,8,0]))
 console.log("___selectSort___",sortSelect([8,6,4,23,4,6,7,2,8,0]))
-console.log("___insetionSort___",insetionSort([8,6,4,23,4,6,7,2,8,0]))
-console.log("___insetionSort2___",insetionSort2([8,6,4,23,4,6,7,2,8,0]))
-console.log("___quickSort___",insetionSort2([8,6,4,23,4,6,7,2,8,0]))
+console.log("___insertionSort___",insertionSort([8,6,4,23,4,6,7,2,8,0]))
+console.log("___insertionSort2___",insertionSort2([8,6,4,23,4,6,7,2,8,0]))
+console.log("___quickSort___",quickSort([8,6,4,23,4,6,7,2,8,0]))
 
 
 const mergeTimestart = new Date().getTime()
@@ -291,6 +353,7 @@ function saySeq(a){
     return seq
 }
 
+
 function encodeChar(string){
     let count = string.length -1;
     let num = 0;
@@ -300,7 +363,7 @@ function encodeChar(string){
     }
     return num
 
-}
+} 
 
 function isAlphabet(s){
     return /[a-zA-Z]/.test(s)
@@ -325,8 +388,9 @@ function isPalindrom(str){
     return true
 }
 
-// console.log("__isPalindrom__",isPalindrom('Was it a cat i saw?'))
-// console.log("__isPalindrom__",isPalindrom('Was isat a cat i saw?'))
+
+console.log("__isPalindrom__",isPalindrom('Was it a cat i saw?'))
+console.log("__isPalindrom__",isPalindrom('Was isat a cat i saw?'))
 
 console.log( 'fairy tales'.toLocaleLowerCase().replace(' ', '').split('').sort().join('') === 'rail safety'.toLocaleLowerCase().replace(' ', '').split('').sort().join(''))
 function isAnagram(str1,str2){
@@ -508,9 +572,11 @@ function flatten(array) {
         if (Array.isArray(array[i])){
            const flat = flatten(array[i])
            for (let j = 0; j < flat.length; j++){
+            console.log('!!flat',flat[j])
             arr.push(flat[j])
            }
         }else{
+            console.log('!!', array[i])
             arr.push(array[i])
         }
        
@@ -581,7 +647,7 @@ function arraySubset(source, subset) {
     if (source.length < subset.length){
         return false
     }
-    for (let i = 0; i < source.length; i++){
+    for (let i = 0; i < subset.length; i++){
         const index = source.indexOf(subset[i])
         if (index === -1){
             return false
