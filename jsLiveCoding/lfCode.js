@@ -30,6 +30,7 @@ function binSearchRec(arr, t, start = 0, end = arr.length - 1) {
   }
 }
 
+
 // two sorted arrays intersection
 
 function intersectionOfTwoArrays(arr1, arr2) {
@@ -54,6 +55,7 @@ function intersectionOfTwoArrays(arr1, arr2) {
 
 // console.log([121,3,2,3,5,7,11].sort((a,b) => a - b))
 // console.log(intersectionOfTwoArrays([2,3,3,5,7,11], [3,3,5,7,15,31]))
+<<<<<<< HEAD
 
 function intersectionOfTwoSortedArrays(arr1, arr2) {
   let i = 0;
@@ -70,6 +72,50 @@ function intersectionOfTwoSortedArrays(arr1, arr2) {
       i += 1;
     } else {
       j += 1;
+=======
+
+function intersectionOfTwoSortedArrays(arr1,arr2){
+    let i = 0;
+    let j = 0; 
+    const intersection = []
+    while (i < arr1.length && j < arr2.length){
+        if (arr1[i] === arr2[j]){
+            if (arr1[i] !== arr1[i - 1]){
+                intersection.push(arr1[i])
+            }
+            i += 1
+            j += 1
+        }
+        else if (arr1[i] < arr2[j]){
+            i += 1
+        }else{
+            j += 1
+        }
+   
+    }
+    return intersection
+}
+console.log("myintersection",intersectionOfTwoSortedArrays([2,3,3,5,7,11], [3,3,7,15,31]))
+
+
+const arr = [4,3,6,8,5,2,5,2,2,54,89,0,65,34]
+
+
+
+function sortSelect(arr){
+    for (let i = 0; i < arr.length; i++ ){
+        let minIndex = i
+        for (let j = i + 1; j < arr.length; j++){
+            if (arr[minIndex] > arr[j]) {
+                minIndex = j
+            }}
+        let tmp = arr[i]
+        // console.log(tmp)
+        arr[i] = arr[minIndex]
+        arr[minIndex] = tmp 
+        }
+    return arr
+>>>>>>> 11904cdd16490499cc68dd951c11e364f4bb9502
     }
   }
   return intersection;
@@ -79,6 +125,7 @@ console.log(
   intersectionOfTwoSortedArrays([2, 3, 3, 5, 7, 11], [3, 3, 7, 15, 31])
 );
 
+<<<<<<< HEAD
 const arr = [4, 3, 6, 8, 5, 2, 5, 2, 2, 54, 89, 0, 65, 34];
 
 function sortSelect(arr) {
@@ -127,6 +174,104 @@ function bubbleSorting(arr) {
   }
   console.log(count);
   return arr;
+=======
+
+function sortBuble(arr){
+        for (let i = 0; i < arr.length; i++ ){
+            for (let j = 0; j < arr.length - i ; j++){
+                    if (arr[j] > arr[ j+ 1]){
+                        let tmp = arr[j]
+                        arr[j] = arr[j+1]
+                        arr[j + 1] = tmp 
+                    }
+            }
+        
+        }
+        return arr
+    }
+
+function bubbleSorting(arr){
+        let isSorted = false
+        let count = 0;
+       while (!isSorted){
+        isSorted = true
+            for (let j = 0; j < arr.length ; j++){
+                    if (arr[j] > arr[ j+ 1]){
+                        isSorted = false
+                        let tmp = arr[j]
+                        arr[j] = arr[j+1]
+                        arr[j + 1] = tmp 
+                    }
+                    count += 1
+            }
+        }
+        console.log(count)
+        return arr
+       
+    } 
+    
+
+function mergeSort(arr){
+    if(arr.length < 2){
+        return arr
+    }
+    const mid = Math.floor(arr.length / 2)
+    const rightArr = arr.slice(0,mid)
+    const leftArr = arr.slice(mid)
+    return merge(mergeSort(leftArr), mergeSort(rightArr))
+}
+
+function merge(leftArr, rightArr){
+    const sortedArr = []
+    while(leftArr.length && rightArr.length){
+        if(leftArr[0] < rightArr[0]){
+            sortedArr.push(leftArr.shift())
+        }else{
+            sortedArr.push(rightArr.shift())
+        }}
+    return [...sortedArr, ...leftArr, ...rightArr]
+}
+
+
+function insSort(arr){
+    for (let i = 1; i < arr.length; i++){
+        let j = i;
+        while(arr[j] < arr[j-1] && j > 0){
+            const tem = arr[j]
+            arr[j] = arr[j-1]
+            arr[j-1] = tem
+            j--
+        }
+    }
+    return arr
+}
+console.log('__ins__& sorted', insSort(arr))
+function insertionSort(arr){
+    for (let i = 1; i < arr.length; i++){
+        for (let j = i; j > 0; j--){
+            if (arr[j] < arr[j - 1]){
+                const tmp = arr[j]
+                arr[j] = arr[j - 1]
+                arr[j - 1] = tmp
+            }else{
+                break
+            }
+        }
+    }
+    return arr
+}
+function insertionSort2(arr){
+    for (let i = 1; i < arr.length; i++){
+        j = i
+       while(arr[j] < arr[j - 1] && j > 0){
+        const tmp = arr[j]
+        arr[j] = arr[j - 1]
+        arr[j - 1] = tmp
+        j -= 1
+       }
+    }
+    return arr
+>>>>>>> 11904cdd16490499cc68dd951c11e364f4bb9502
 }
 
 function mergeSort(arr) {
@@ -138,6 +283,39 @@ function mergeSort(arr) {
   const leftArr = arr.slice(mid);
   return merge(mergeSort(leftArr), mergeSort(rightArr));
 }
+<<<<<<< HEAD
+=======
+
+function qS(arr){
+    if (arr.length < 2){
+        return arr
+    }
+
+    const pivot = Math.floor(Math.random * arr.length)
+    const sl = []
+    const lr = []
+    const equal =[]
+    for (let i = 0; i < arr.length; i++){
+        if (arr[i] == arr[pivot]){
+            equal.push(arr[i])
+        }else if (arr[i] < arr[pivot]){
+            sl.push(arr[i])
+        }else{
+            lr.push(arr[i])
+        }
+    }
+    return qS([...sl, ...equal, ...lr])
+
+}
+console.log("___selectSort___",sortSelect([8,6,4,23,4,6,7,2,8,0]))
+console.log("___bubleSort2___",bubbleSorting([8,6,4,23,4,6,7,2,8,0]))
+console.log("___mergeSort___",mergeSort([8,6,4,23,4,6,7,2,8,0]))
+console.log("___bubleSort___",sortBuble([8,6,4,23,4,6,7,2,8,0]))
+console.log("___selectSort___",sortSelect([8,6,4,23,4,6,7,2,8,0]))
+console.log("___insertionSort___",insertionSort([8,6,4,23,4,6,7,2,8,0]))
+console.log("___insertionSort2___",insertionSort2([8,6,4,23,4,6,7,2,8,0]))
+console.log("___quickSort___",quickSort([8,6,4,23,4,6,7,2,8,0]))
+>>>>>>> 11904cdd16490499cc68dd951c11e364f4bb9502
 
 function merge(leftArr, rightArr) {
   const sortedArr = [];
@@ -342,6 +520,7 @@ function saySeq(a) {
   return seq;
 }
 
+<<<<<<< HEAD
 function encodeChar(string) {
   let count = string.length - 1;
   let num = 0;
@@ -351,6 +530,19 @@ function encodeChar(string) {
   }
   return num;
 }
+=======
+
+function encodeChar(string){
+    let count = string.length -1;
+    let num = 0;
+    for (let i = 0; i < string.length; i++){
+        num += 26**count * (string[i].charCodeAt() - 'A'.charCodeAt() + 1)
+        count -= 1
+    }
+    return num
+
+} 
+>>>>>>> 11904cdd16490499cc68dd951c11e364f4bb9502
 
 function isAlphabet(s) {
   return /[a-zA-Z]/.test(s);
@@ -375,8 +567,14 @@ function isPalindrom(str) {
   return true;
 }
 
+<<<<<<< HEAD
 console.log("__isPalindrom__", isPalindrom("Was it a cat i saw?"));
 console.log("__isPalindrom__", isPalindrom("Was isat a cat i saw?"));
+=======
+
+console.log("__isPalindrom__",isPalindrom('Was it a cat i saw?'))
+console.log("__isPalindrom__",isPalindrom('Was isat a cat i saw?'))
+>>>>>>> 11904cdd16490499cc68dd951c11e364f4bb9502
 
 console.log(
   "fairy tales"
@@ -550,6 +748,7 @@ console.log("__cartesian__", cartesianProd([1, 2], [3, 4]));
 // console.log('******')
 
 function flatten(array) {
+<<<<<<< HEAD
   const arr = [];
   for (let i = 0; i < array.length; i++) {
     const item = array[i];
@@ -558,6 +757,36 @@ function flatten(array) {
     // arr.push(...flatten(item)
     // }else{
     //     arr.push(item)
+=======
+    const arr = [];
+    for (let i = 0; i < array.length; i++){
+        if (Array.isArray(array[i])){
+           const flat = flatten(array[i])
+           for (let j = 0; j < flat.length; j++){
+            console.log('!!flat',flat[j])
+            arr.push(flat[j])
+           }
+        }else{
+            console.log('!!', array[i])
+            arr.push(array[i])
+        }
+       
+    }
+    return arr
+  }
+  
+  console.log('__flattend__',flatten([[1], [[2, 3]], [[[4]]]])) // -> [1, 2, 3, 4]
+
+  function removeDupes(str) {
+    // const chars = {}
+    // const res = []
+  
+    // for (let i = 0; i < str.length; i++) {
+      // if (!chars[str[i]]) {
+        // chars[str[i]] = true
+        // res.push(str[i])
+      // }
+>>>>>>> 11904cdd16490499cc68dd951c11e364f4bb9502
     // }
   }
   return arr;
@@ -622,8 +851,23 @@ function isRotated(string, compare) {
 console.log("__isRotated__", isRotated("javascrip1", "scriptjava"));
 
 function arraySubset(source, subset) {
+<<<<<<< HEAD
   if (source.length < subset.length) {
     return false;
+=======
+    if (source.length < subset.length){
+        return false
+    }
+    for (let i = 0; i < subset.length; i++){
+        const index = source.indexOf(subset[i])
+        if (index === -1){
+            return false
+        }
+        delete source[index]
+        
+    }
+    return true
+>>>>>>> 11904cdd16490499cc68dd951c11e364f4bb9502
   }
   for (let i = 0; i < subset.length; i++) {
     const index = source.indexOf(subset[i]);
