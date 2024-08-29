@@ -1127,3 +1127,28 @@ function arrayRange(array) {
   return groups;
 }
 let array = [1, 2, 3, 4, 7, 8, 12, 15, 21, 21, 22, 23];
+
+// const arr = [1,8,3,9,12,13,2,3,4]
+
+// const sortEven = (arr) => {
+//   const evenArr = [...arr].filter((num) => {
+//       if(num % 2 === 0){
+//         return true
+//       }
+//       return false
+    
+//   })
+//   evenArr.sort((a,b) => a - b)
+
+//   return arr.map((num) => {
+//     if (num % 2 === 0){
+//       return evenArr.shift()
+//     }
+//     return num
+//   })
+
+
+
+// }
+
+// console.log(sortEven(arr)) 
