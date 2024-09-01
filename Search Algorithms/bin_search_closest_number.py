@@ -18,7 +18,6 @@ Examples:
 """
 
 
-
 def find_closest_num(a, target):
     min_diff = float('inf')
     low = 0
@@ -58,4 +57,5 @@ def find_closest_num(a, target):
 
 
 a = [2, 6, 7, 8, 8, 9]
-print(find_closest_num(a,4))
+
+print(find_closest_num(a, 4))
