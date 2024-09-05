@@ -14,3 +14,5 @@ function factorialRec(n) {
 }
 console.log("__factorial__", factorial(5));
 console.log("__factorialRec__", factorialRec(5));
+
+console.log(parseInt("332", 2));
