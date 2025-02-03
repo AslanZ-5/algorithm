@@ -1,22 +1,27 @@
 function arrayRange(array) {
+  if (!array.length) return [];
+
   const groups = [];
   let start = array[0];
 
-  array.push(NaN);
+  for (let index = 1; index <= array.length; index++) {
+    const value = array[index];
+    const previous = array[index - 1];
 
-  for (let index = 1; index < array.length; index++) {
-    const value = array[index],
-      previous = array[index - 1];
-    if (value === previous + 1 || value === previous) continue;
+    if (value === previous + 1) continue;
 
     if (start === previous) {
-      groups.push("" + previous);
+      groups.push(`${previous}`);
     } else {
-      groups.push(start + "-" + previous);
+      groups.push(`${start}-${previous}`);
     }
+
     start = value;
   }
+
   return groups;
 }
+
 let array = [1, 2, 3, 4, 7, 8, 12, 15, 21, 21, 22, 23];
-console.log(arrayRange(array));
+console.log(arrayRange(array)); //  ["1-4", "7-8", "12", "15", "21", "22-23"]
+
