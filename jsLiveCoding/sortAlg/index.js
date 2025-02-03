@@ -35,18 +35,42 @@ function merge(leftArr, rightArr) {
   return [...sortedArr, ...leftArr, ...rightArr];
 }
 
-function sortBuble(arr) {
-  for (let i = 0; arr.length > i; i++) {
-    for (let j = 0; arr.length > j; j++) {
-      if (arr[j] > arr[j + 1]) {
-        const temp = arr[j];
-        arr[j] = arr[j + 1];
-        arr[j + 1] = temp;
-      }
-    }
-  }
-  return arr;
+// function sortBuble(arr) {
+//   for (let i = 0; arr.length > i; i++) {
+//     for (let j = 0; arr.length > j; j++) {
+//       if (arr[j] > arr[j + 1]) {
+//         const temp = arr[j];
+//         arr[j] = arr[j + 1];
+//         arr[j + 1] = temp;
+//       }
+//     }
+//   }
+//   return arr;
+// }
+
+const sortArr = [3,5,87,32,4]
+
+
+const bubleSort = (arr) => {
+    let n = arr.length
+    let swapped;
+    do {
+         swapped = false;
+       for (let i = 0; i < n -1; i++){
+           if (arr[i] > arr[i+1]){
+               const temp = arr[i]
+               arr[i] = arr[i + 1]
+               arr[i + 1] = temp
+           }
+           swapped = true
+       }
+            n--
+    } while(swapped)
+
+    return arr;
 }
+
+console.log(bubbleSort(sortArr))
 
 function selectionSort(arr) {
   for (let i = 0; arr.length > i; i++) {
